@@ -16,7 +16,10 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
-
+#### 04.05.2017
+### Version 1.1.157
+#### IMP
+- Bestell Report: Breite für die Liefer und Rechnungsanschrift verbessert 
 
 #### 04.05.2017
 ### Version 1.1.156
