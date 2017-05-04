@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 04.05.2017
+### Version 1.1.155
+#### FIX
+- Einkauf-Report hatte bei einem Fehler der Reportengine "Datum auswählen" angezeigt.
+- Steuerreihenfolge ändern in der Rechnung
 
 
 #### 04.05.2017

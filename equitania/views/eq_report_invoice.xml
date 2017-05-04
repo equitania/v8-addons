@@ -601,7 +601,7 @@
 										<strong>Total without taxes</strong>
 									</td>
 									<!--  NEUE STEUERSPALTE -->
-									<td class="text-right" t-foreach="[x for x in o.tax_line if x.amount]" t-as="tax_line">
+									<td class="text-right" t-foreach="set([x for x in o.tax_line if x.amount])" t-as="tax_line">
 										<strong>
 											<span t-esc="tax_line.name" />
 										</strong>
@@ -625,7 +625,7 @@
 											t-esc="get_standard_price(o.amount_untaxed, o.partner_id.lang, o.currency_id)" />
 									</td>
 																		<!--  NEUE STEUERSPALTE -->
-									<td class="text-right" t-foreach="[x for x in o.tax_line if x.amount]" t-as="tax_line">
+									<td class="text-right" t-foreach="set([x for x in o.tax_line if x.amount])" t-as="tax_line">
 										<span t-esc="get_standard_price(tax_line.amount, o.partner_id.lang, o.currency_id)" />
 									</td>
 									<!--  ALTE STeuerspalte
