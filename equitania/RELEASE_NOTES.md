@@ -16,6 +16,14 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+
+
+#### 04.05.2017
+### Version 1.1.156
+#### CHG
+- Ticket 4142: Anpassungen für Berechnung des Rabattwertes (Rechnungen)
+
+
 #### 04.05.2017
 ### Version 1.1.155
 #### FIX
@@ -23,10 +31,7 @@ Vorgehensweise unter Debian:
 - Steuerreihenfolge ändern in der Rechnung
 
 
-#### 04.05.2017
-### Version 1.1.155
-#### CHG
-- Ticket 4142: Anpassungen für Berechnung des Rabattwertes (Rechnungen)
+
 
 #### 03.05.2017
 ### Version 1.1.154
