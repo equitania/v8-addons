@@ -34,7 +34,7 @@ class eq_account_invoice(models.Model):
         res['eq_contact_person_id'] = invoice.eq_contact_person_id.id
         res['user_id'] = invoice.user_id.id
         return res
-    
+
     
     
 class eq_account_invoice_line(models.Model):
@@ -42,11 +42,26 @@ class eq_account_invoice_line(models.Model):
         
     @api.depends('discount', 'price_unit', 'quantity')
     def _compute_discount(self):
+        """
+        Berechnet den Rabattwert für eine Position
+        :return:
+        """
+        # Ticket 4142: neue Berechnung für Rabatt: Preis * Menge - Betrag inkl. Rabatt
         for record in self:
-            record.discount_value = record.discount / 100 * record.price_unit * record.quantity
-            
+            # Ticket 4142: neue Berechnung für Rabatt: Preis * Menge - Betrag inkl. Rabatt
+            if record.price_subtotal:
+                record.discount_value = record.price_unit * record.quantity - record.price_subtotal
+            else:
+                # Falls Betrag noch nicht berchnet wurde, alte Logik nutzen
+                record.discount_value = record.discount / 100 * record.price_unit * record.quantity
+
+
     @api.depends('discount', 'discount_value')
     def _compute_discount_display(self):
+        """
+        Berechnet den Rabattwert der einzelnen Positionen in der Treeansicht des Auftragsformulars
+        :return:
+        """
         currency_symbol = ''
         if (self and self[0].invoice_id):            
             currency_symbol = self[0].invoice_id.currency_id.symbol

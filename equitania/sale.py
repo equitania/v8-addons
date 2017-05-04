@@ -42,6 +42,12 @@ class eq_sale_order_line(models.Model):
                 record.discount_value = record.price_unit * record.product_uom_qty - record.price_subtotal
             else:
                 # Falls Betrag noch nicht berchnet wurde, alte Logik nutzen
+                # cur_obj = self.pool.get('res.currency')
+                # full_price = record.price_unit * record.product_uom_qty
+                # subtotal = cur_obj.round(cr, uid, cur, full_price * (1 - (order.eq_percent_discount / 100)))
+                # record.discount_value = full_price - subtotal
+
+
                 record.discount_value = record.discount / 100 * record.price_unit * record.product_uom_qty
 
 

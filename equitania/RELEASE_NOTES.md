@@ -17,6 +17,12 @@ Vorgehensweise unter Debian:
 `fc-cache -f -v`
 
 
+
+#### 04.05.2017
+### Version 1.1.155
+#### CHG
+- Ticket 4142: Anpassungen für Berechnung des Rabattwertes (Rechnungen)
+
 #### 03.05.2017
 ### Version 1.1.154
 #### CHG
