@@ -30,6 +30,16 @@ class eq_sale_quote_template_extension(osv.osv):
                 'note': fields.html('Terms and conditions'),
                 'eq_header_text': fields.html('Header text'),
                 }
+
+class eq_sale_quote_line(osv.osv):
+    _inherit = 'sale.quote.line'
+
+    _columns = {
+        'sequence': fields.integer(string='Pos', default=1),
+        'sale_layout_cat_id': fields.many2one('sale_layout.category', string='Section'),
+    }
+
+
         
 class eq_sale_order_quote_template_extension(osv.osv):
     _inherit = 'sale.order'
@@ -62,6 +72,9 @@ class eq_sale_order_quote_template_extension(osv.osv):
                 'product_id': line.product_id.id,
                 'product_uom': line.product_uom_id.id,
                 'website_description': line.website_description,
+
+                'sale_layout_cat_id': line.sale_layout_cat_id,
+
                 'state': 'draft',
             })
             lines.append((0, 0, data))

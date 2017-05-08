@@ -2,6 +2,12 @@
 ! Achtung, dieses Module gibt es in der abgewandelten Form bei FutureTV als eq_quotation_enhancement_futuretv - Änderungen immer auch dort nachziehen ! 
 
 
+#### 08.05.2017
+#### Version 1.0.15
+##### CHG
+- Ticket 3125: Erweiterungen für Angebotsvorlagen
+
+
 #### 26.10.2016
 #### Version 1.0.14
 ##### CHG

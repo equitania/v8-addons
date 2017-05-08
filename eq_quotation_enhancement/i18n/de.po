@@ -56,3 +56,9 @@ msgstr "Diese Vorlage wird standardmäßig bei jedem neu erstellten Angebot verw
 #: view:website:equitania.eq_external_layout_header_sale_order_data
 msgid "Expiry Date"
 msgstr "Gültig bis"
+
+
+#. module: eq_quotation_enhancement
+#: field:sale.quote.line,sale_layout_cat_id:0
+msgid "Section"
+msgstr "Sektion"
