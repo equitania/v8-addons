@@ -19,32 +19,21 @@
 #
 ##############################################################################
 
-{
-    'name': 'Equitania No Advertisement',
-    'license': 'AGPL-3',
-    'version': '1.0.3',
-    'description': """
-        Module deactivate the phone home function of Odoo!
-        Odoo account will also deactivated. 
-        You should uninstall also Support chat!
-    """,
-    'author': 'Equitania Software GmbH',
-    'website': 'www.myodoo.de',
-    'depends': ['base_setup', 'mail',],
-    'category' : 'General Improvements',
-    'summary': 'Ad-Blocker',
-   
-    
-    #'init': [
-    #         'eq_install_func.xml', 
-    #         ],
-    'data': [
-    ],
-    'qweb' : [
-        "static/src/xml/*.xml",
-    ],
-    'demo': [],
-    'css': ['base.css'],
-    'installable': True,
-    'auto_install': False,
-}
+from openerp import models, fields, api, _
+# from openerp import tools
+
+
+
+class eq_module_module(models.Model):
+    _inherit = 'ir.module.module'
+
+
+    def get_apps_server(self, cr, uid, context=None):
+        """
+        Defaultseite (https://apps.openerp.com/apps) für fehlende Module durch eine eigene Seite ersetzen
+        :param cr: 
+        :param uid: 
+        :param context: 
+        :return: 
+        """
+        return 'https://www.myodoo.de/apps' #tools.config.get('apps_server', 'https://www.myodoo.de/apps')
