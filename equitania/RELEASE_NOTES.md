@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 09.05.2017
+### Version 1.1.158
+#### CHG/FIX
+- SQL Statement Auftragspositionen: Berücksichtigung der Abgeschlossen Thematik. Wenn Haken Abgeschlossen gesetzt dann Restmenge 0.
+ 
 #### 04.05.2017
 ### Version 1.1.157
 #### IMP
