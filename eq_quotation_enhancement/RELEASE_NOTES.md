@@ -2,6 +2,12 @@
 ! Achtung, dieses Module gibt es in der abgewandelten Form bei FutureTV als eq_quotation_enhancement_futuretv - Änderungen immer auch dort nachziehen ! 
 
 
+#### 10.05.2017
+#### Version 1.0.16
+##### CHG
+- Ticket 3125: Verbesserungen für drag&drop für die Positionen der Angebotsvorlagen
+
+
 #### 08.05.2017
 #### Version 1.0.15
 ##### CHG

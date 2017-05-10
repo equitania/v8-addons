@@ -15,7 +15,11 @@
 				</notebook>
 
 				 <xpath expr="//tree[@string='Sales Quote Template Lines']/field[@name='product_id']" position="before">
-                    <field name="sequence" widget="handle"></field>
+                    <field name="sequence" string="Pos"></field> <!--widget="handle"-->
+                </xpath>
+
+				  <xpath expr="//tree[@string='Sales Quote Template Lines']/field[@name='sequence']" position="attributes">
+                    <attribute name="handle" />
                 </xpath>
 
 
