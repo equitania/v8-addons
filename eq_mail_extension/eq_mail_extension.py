@@ -246,7 +246,13 @@ class eq_mail_mail(osv.Model):
 
                 if user != SUPERUSER_ID:
                     mail_server = ir_mail_server.search(cr, uid, [('user_id', '=', user)], context=context)
-                
+
+                else:
+                    partner_id = mail.author_id.id
+                    res_users_pool = self.pool.get('res.users')
+                    res_users_id = res_users_pool.search(cr, uid, [('partner_id', '=', partner_id)], context=context)
+                    mail_server = ir_mail_server.search(cr, uid, [('user_id', '=', res_users_id)], context=context)
+
                 for email in email_list:
                     if not mail_server and default_mail_address:
                         msg = ir_mail_server.build_email(
