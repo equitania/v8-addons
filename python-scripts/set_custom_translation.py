@@ -48,7 +48,7 @@ username = "username"
 pwd = "pwd"
 dbname = "dbname"
 baseurl = "http://localhost:8069"
-password_for_sql_exec_module = "********"
+password_for_sql_exec_module = "***********"
 
 i = 1  # Zaehlvariable
 
@@ -105,7 +105,7 @@ with con:
                     log("----------------------")
         else:
             statement = "Select id From ir_translation where name = '%s' and module = '%s' and md5(src)='%s'" % (model,module,md5)
-            result = sock.execute(dbname, uid, pwd, 'eq_sql_exec', 'execute_sql',password_for_sql_exec_module,statement)
+            result = sock.execute(dbname, uid, pwd, 'eq_sql_exec', 'execute_sql_set_custom_translation',password_for_sql_exec_module,statement)
             if result == []:
                 log("SQLite3-ID:" + str(row['id']) + " Kein Datensatz zu Ihren Daten gefunden")
                 log(str(i) + " Englischer Wert: ", english_translation)
