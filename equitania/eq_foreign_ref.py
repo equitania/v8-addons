@@ -27,6 +27,7 @@ class eq_foreign_ref(osv.osv):
     
     _columns = {
                 'eq_foreign_ref': fields.char('Foreign reference'),
+                'eq_foreign_ref_purchase': fields.char('Foreign reference purchase')
                 }
         
 
@@ -48,7 +49,8 @@ class eq_purchase_order(osv.osv):
         if partner_id:
             partner = self.pool.get('res.partner')
             supplier = partner.browse(cr, uid, partner_id, context=context)            
-            original_values['value']['partner_ref'] = supplier.eq_foreign_ref
+            #original_values['value']['partner_ref'] = supplier.eq_foreign_ref
+            original_values['value']['partner_ref'] = supplier.eq_foreign_ref_purchase
         
         return original_values
         

@@ -17,6 +17,11 @@ Vorgehensweise unter Debian:
 `fc-cache -f -v`
 
 #### 15.05.2017
+### Version 1.1.160
+#### ADD
+- Jira-Issue AOE-6: Neues Feld 'eq_foreign_ref_purchase' hinzugefügt. Der Inhalt wird bei Bestellung/Anfragen direkt in das Feld 'partner_ref' geladen.
+
+#### 15.05.2017
 ### Version 1.1.159
 #### CHG
 - Reports: Anschriftenfelder berücksichtigen nun Webshop-Kunden mit Vorname & Firmenanschrift

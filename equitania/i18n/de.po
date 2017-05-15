@@ -784,7 +784,13 @@ msgstr "Bei Fragen wenden Sie sich bitte an:"
 #. module: equitania
 #: field:res.partner,eq_foreign_ref:0
 msgid "Foreign reference"
-msgstr "Fremdnr."
+msgstr "Fremdnr. Kunde"
+
+#. module: equitania
+#: field:res.partner,eq_foreign_ref_purchase:0
+#: field:res.users,eq_foreign_ref_purchase:0
+msgid "Foreign reference purchase"
+msgstr "Fremdnr. Lieferant"
 
 #. module: equitania
 #: view:eq_open_sale_order_line:equitania.eq_open_sale_order_line_search_view
