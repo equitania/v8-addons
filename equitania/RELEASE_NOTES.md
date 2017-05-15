@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 15.05.2017
+### Version 1.1.159
+#### CHG
+- Reports: Anschriftenfelder berücksichtigen nun Webshop-Kunden mit Vorname & Firmenanschrift
+
 #### 09.05.2017
 ### Version 1.1.158
 #### CHG/FIX

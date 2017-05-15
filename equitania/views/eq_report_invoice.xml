@@ -171,13 +171,23 @@
 							<h t-field="o.company_id.city" />
 						</div>
 						<div t-if="o.partner_id.is_company">
-							<div  style="clear:left;">
-								<h t-if="o.partner_id.title.name" t-field="o.partner_id.title.name"  />
-								<h t-if="o.partner_id.eq_firstname" t-field="o.partner_id.eq_firstname" />
-								<h t-field="o.partner_id.name" />
+							<div t-if="o.partner_id.eq_firstname" style="clear:left;">
+								<!-- eq_name2 (Firma) wird vorgezogen wenn ein Vorname für die FIRMA vorhanden ist - dies ist aus steuerrechtlicher Sicht wichtig. Thema: Webshop-Kunde mit Firma.  -->
+								<div t-if="o.partner_id.eq_name2" t-field="o.partner_id.eq_name2" style="clear:left;" />
+								<div  style="clear:left;">
+									<h t-if="o.partner_id.title.name" t-field="o.partner_id.title.name"  />
+									<h t-if="o.partner_id.eq_firstname" t-field="o.partner_id.eq_firstname" />
+									<h t-field="o.partner_id.name" />
+								</div>
 							</div>
-							<div t-if="o.partner_id.eq_name2" t-field="o.partner_id.eq_name2"
-								style="clear:left;" />
+							<div t-if="not o.partner_id.eq_firstname" style="clear:left;">
+								<div  style="clear:left;">
+									<h t-if="o.partner_id.title.name" t-field="o.partner_id.title.name"  />
+									<h t-if="o.partner_id.eq_firstname" t-field="o.partner_id.eq_firstname" />
+									<h t-field="o.partner_id.name" />
+								</div>
+								<div t-if="o.partner_id.eq_name2" t-field="o.partner_id.eq_name2" style="clear:left;" />
+							</div>
 							<div t-if="o.partner_id.eq_name3" t-field="o.partner_id.eq_name3"
 								style="clear:left;" />
 							<div>
