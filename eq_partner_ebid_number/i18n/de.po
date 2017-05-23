@@ -361,7 +361,7 @@ msgstr "Für diese Adresse konnte keine EBID-Nummer ermittelt werden."
 #. module: partner_ebid_number
 #: view:eq.ebid.protocoll.position:partner_ebid_number.eq_ebid_protocoll_pos_form_view
 msgid "Set data for company"
-msgstr "Daten in Odoo-Adresse übernehmen"
+msgstr "Daten in Adresse übernehmen"
 
 #. module: partner_ebid_number
 #: view:res.partner:partner_ebid_number.eq_view_partner_form_ebid

@@ -361,7 +361,7 @@ class eq_partner_ebid(models.Model):
     
     def show_message(self, info, message_text, prot_id):
         mod_obj = self.env['ir.model.data']
-        view = mod_obj.get_object_reference('partner_ebid_number', 'eq_message')    
+        view = mod_obj.get_object_reference('eq_partner_ebid_number', 'eq_message')
         
         vals = {
                 'eq_info': info,

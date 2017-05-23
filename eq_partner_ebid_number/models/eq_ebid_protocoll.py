@@ -244,6 +244,7 @@ class eq_ebid_protocoll_position(models.Model):
                                'email' : self.eq_email,
                                'fax' : self.eq_fax,
                                'website' : self.eq_url,
+                                'vat': self.eq_ustid_nr
                                }
                 found_partner[0].write(update_vals)            
     
