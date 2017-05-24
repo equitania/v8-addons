@@ -46,6 +46,7 @@ def get_ebid_settings(odoo_self):
     config_params = odoo_self.env['ir.config_parameter']
     match_url = config_params.get_param("eq.ebid.service.match.url",False)
     company_url = config_params.get_param("eq.ebid.service.company.url",False)
+    search_url = config_params.get_param("eq.ebid.service.search.url", False)
     homepage_url = config_params.get_param("eq.ebid.homepage.url",False) or 'http://www.unternehmensverzeichnis.org/'
     
     print 'homepage_url: ' + str(homepage_url)
@@ -54,6 +55,8 @@ def get_ebid_settings(odoo_self):
         company_url += '/'
     if (homepage_url and not homepage_url.endswith('/')):
         homepage_url += '/'
+    if (search_url and not search_url.endswith('/')):
+        search_url += '/'
         
     user = config_params.get_param("eq.ebid.user",False)
     pw = config_params.get_param("eq.ebid.pw",False)
@@ -62,7 +65,7 @@ def get_ebid_settings(odoo_self):
     rate = 90
     if (rate_txt):
         rate = int(rate_txt)
-    settings = EbidSettings(user, pw, match_url, company_url, homepage_url, rate)   
+    settings = EbidSettings(user, pw, match_url, company_url, search_url, homepage_url, rate)
     return settings
     
 
@@ -93,7 +96,7 @@ def find_company(partner_id, searchParams, ebid_settings):
                 rate = res['rate']
                 
                 rate_arr_txt = ''
-                if (res['rateArr']):
+                if 'rateArr' in res and res['rateArr']:
                     rate_arr = res['rateArr']
                     if (len(rate_arr) == 14):
                         rate_arr_txt = '{Street: ' + str(rate_arr[7]) + ', ' + 'HouseNo: ' + str(rate_arr[8]) + ', ' + 'City: ' + str(rate_arr[9]) + ', ' + 'Zip: ' + str(rate_arr[10]) + ', ' + 'CompanyName: ' + str(rate_arr[12]) + '}'
@@ -117,7 +120,28 @@ def find_company(partner_id, searchParams, ebid_settings):
     
     return findCompanyResult
 
+
+def get_search_as_you_type_token(ebid_settings):
+    header = {'content-type': 'application/json'}
+    try:
+        requestRes = requests.get(ebid_settings.urlCompany + ebid, headers=header,
+                                  auth=(ebid_settings.user, ebid_settings.pw))
+        jsonRes = requestRes.json()
+    except Exception, e:
+        findCompanyResult = GetEBIDRequestResult(partner_id, "res.partner", None, None, False,
+                                                 'Error [request get_company_for_ebid]: ' + e.message, 1,
+                                                 'ebid: ' + ebid, requestRes.text);
+        return findCompanyResult
+
+
 def get_company_for_ebid(partner_id, ebid, ebid_settings):
+    """
+    Aufruf des Companyservices für Suche einer Firma über die EBID-Nr
+    :param partner_id: 
+    :param ebid: 
+    :param ebid_settings: 
+    :return: 
+    """
     header = {'content-type': 'application/json'}  
     try:
         requestRes = requests.get(ebid_settings.urlCompany + ebid, headers=header, auth=(ebid_settings.user, ebid_settings.pw))
@@ -152,11 +176,12 @@ class request_result_info:
         
 class EbidSettings:
     
-    def __init__(self, user, pw, matchUrl, companyUrl, homepage, acceptance_rate = 90):
+    def __init__(self, user, pw, matchUrl, companyUrl, searchUrl, homepage, acceptance_rate = 90):
         self.user = user
         self.pw = pw 
         self.urlMatch = matchUrl
         self.urlCompany = companyUrl
+        self.urlSearch = searchUrl
         self.homepage = homepage
         self.acceptance_rate = acceptance_rate
         
@@ -185,20 +210,87 @@ class EBIDRequestSearchResult:
 class SearchForEBIDResult:
     
     def __init__(self, ebidno, values):
+        """
+        Auslesen der Firmendaten aus Ergebnis des Company-Services
+        :param ebidno: 
+        :param values: 
+        """
         self.ebid_no = ebidno
+
+        self.phone = ''
+        self.fax = ''
+        self.mobile = ''
+        self.email = ''
+        self.url = ''
+        self.company_name = ''
+        self.street = ''
+        self.house_no = ''
+        self.city = ''
+        self.city_part = ''
+        self.zip = ''
+        self.country = ''
+
+
         if (values):
-            self.company_name = values['companyName']
-            self.street = values['street']
-            self.house_no = values['houseNo']
-            self.city = values['city']
-            self.city_part = values['cityPart']
-            self.zip = values['zip']
-            self.country = values['country']
-            self.phone = values['phone']     
-            self.fax = values['fax']     
-            self.mobile = values['mobile']     
-            self.email = values['email']     
-            self.url = values['url']             
-            self.ustid_nr = values['ustIdNr']  
+            company_name_res = values['companyName']
+            address_dict = {}
+            if isinstance(company_name_res, dict) and 'address' in values:
+                # neue API
+                address_dict = values.get('address', {})
+                self.company_name = company_name_res['value']
+                self.ustid_nr = values.get('vatNo','')
+
+                if 'phoneNumbers' in values:
+                    phoneNumbers = values['phoneNumbers']
+                    for phoneNo in phoneNumbers:
+                        if 'number' in phoneNo and 'type' in phoneNo:
+                            type = phoneNo['type']
+                            if 'priority' in phoneNo and phoneNo['priority'] != 'Primary':
+                                continue
+                            if type == 'Phone':
+                                self.phone =phoneNo['number']
+                            if type == 'Fax':
+                                self.fax =phoneNo['number']
+                            if type == 'Mobile':  # ?
+                                self.mobile =phoneNo['number']
+
+                if 'emails' in values:
+                    emails = values['emails']
+                    for email in emails:
+                        if 'email' in email:
+                            if 'priority' in email and email['priority'] != 'Primary':
+                                continue
+                            self.email =email['email']
+
+                if 'urls' in values:
+                    urls = values['urls']
+                    for url in urls:
+                        if 'url' in url:
+                            if 'priority' in url and url['priority'] != 'Primary':
+                                continue
+                            self.url =url['url']
+
+            else:
+                # alte API
+                address_dict = values
+                self.company_name = address_dict['companyName']
+                self.ustid_nr = address_dict['ustIdNr']
+
+                self.phone = address_dict['phone']
+                self.fax = address_dict['fax']
+                self.mobile = address_dict['mobile']
+                self.email = address_dict['email']
+                self.url = address_dict['url']
+
+            self.street = address_dict['street']
+            self.house_no = address_dict['houseNo']
+            self.city = address_dict['city']
+            self.city_part = address_dict['cityPart']
+            self.zip = address_dict['zip']
+            self.country = address_dict['country']
+
+
+
+
             
         

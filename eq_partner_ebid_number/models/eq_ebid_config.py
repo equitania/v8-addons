@@ -27,6 +27,7 @@ class eq_ebid_config(models.TransientModel):
     
     eq_ebid_service_match_url = fields.Char(string="Match service", required=True)
     eq_ebid_service_company_url = fields.Char(string="Company service")
+    eq_ebid_service_search_url = fields.Char(string="Search service")
     eq_ebid_homepage = fields.Char("Homepage Unternehmensverzeichnis", required=True)
     eq_ebid_user = fields.Char("User", required=True)
     eq_ebid_pw = fields.Char(string ="Password", required=True)
@@ -36,14 +37,16 @@ class eq_ebid_config(models.TransientModel):
     @api.multi
     def get_default_eq_ebid_data(self):
         config_parameters = self.env["ir.config_parameter"]
-        company_url = config_parameters.get_param("eq.ebid.service.company.url") or 'https://matching.unternehmensverzeichnis.org/ws/company/rest/v1.0/'
-        match_url = config_parameters.get_param("eq.ebid.service.match.url") or 'https://matching.unternehmensverzeichnis.org/ws/match/rest/v1.0'
+        company_url = config_parameters.get_param("eq.ebid.service.company.url") or 'https://api.unternehmensverzeichnis.org/ws/company/rest/v2.0/'
+        search_url = config_parameters.get_param("eq.ebid.service.search.url") or 'https://api.unternehmensverzeichnis.org/ws/crm/search/rest/v2.1/'
+        match_url = config_parameters.get_param("eq.ebid.service.match.url") or 'https://api.unternehmensverzeichnis.org/ws/crm/match/rest/v2.0'
         homepage = config_parameters.get_param("eq.ebid.homepage.url") or 'http://www.unternehmensverzeichnis.org/'
         user = config_parameters.get_param("eq.ebid.user")
         pw = config_parameters.get_param("eq.ebid.pw")
         acceptance_rate = config_parameters.get_param("eq.ebid.acceptance.rate") or 90
         return {
                 'eq_ebid_service_company_url': company_url,
+                'eq_ebid_service_search_url': search_url,
                 'eq_ebid_service_match_url': match_url,
                 'eq_ebid_homepage': homepage,
                 'eq_ebid_user': user,
@@ -57,6 +60,7 @@ class eq_ebid_config(models.TransientModel):
         config_parameters = self.env["ir.config_parameter"]
         for record in self:
             config_parameters.set_param("eq.ebid.service.company.url", record.eq_ebid_service_company_url or '',)
+            config_parameters.set_param("eq.ebid.service.search.url", record.eq_ebid_service_search_url or '', )
             config_parameters.set_param("eq.ebid.service.match.url", record.eq_ebid_service_match_url or '',)
             config_parameters.set_param("eq.ebid.homepage.url", record.eq_ebid_homepage or '',)
             config_parameters.set_param("eq.ebid.user", record.eq_ebid_user or '',)

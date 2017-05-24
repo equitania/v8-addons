@@ -26,13 +26,47 @@ from openerp.osv import osv
 from __builtin__ import str
 
 
+# class eq_ebid_search_res(models.TransientModel):
+#     _name = 'eq.ebid.search.res'
+#
+#     name = fields.Char(string="Name")
+#     eq_partner_id = fields.Many2one('res.partner', string="Partner")
+#     eq_ebid_no = fields.Char(string="EBID Number", size=15)
+
+
 
 class eq_partner_ebid(models.Model):
     _inherit = ['res.partner']
     
     eq_ebid_no = fields.Char(string="EBID Number", size=15)
     eq_ebid_was_checked = fields.Boolean('EBID-Suche wurde durchgeführt')
+
+    # search_as_you_type_results = fields.Many2one('eq.ebid.search.res', string='Search')
+    # search_as_you_type_results = fields.One2many('eq.ebid.search.res', 'eq_partner_id', string='Search as you type', readonly=True, )
+
+    # @api.depends('search_as_you_type')
+    # def _list_values(self):
+    #     return [('value1', self.search_as_you_type), ('value2', self.search_as_you_type)]
+
+
+    # search_as_you_type = fields.Char(string="Name", store="False")
+    # search_as_you_type_results = fields.Selection(_list_values, readonly=False)
+
+
     #check Logindaten
+
+
+
+
+    # @api.onchange('search_as_you_type')
+    # def _onchange_search_text(self):
+    #     search_res_obj = self.env['eq.ebid.search.res']
+    #     search_res_obj.create({'name': search_as_you_type})
+    #
+    #
+    #     # self.search_as_you_type_results = [('value1', 'String 1'), ('value2', 'String 2')]
+
+
     
     def get_ebid_settings(self):
         """         
@@ -42,11 +76,14 @@ class eq_partner_ebid(models.Model):
         config_params = self.env['ir.config_parameter']
         match_url = config_params.get_param("eq.ebid.service.match.url",False)
         company_url = config_params.get_param("eq.ebid.service.company.url",False)
+        search_url = config_params.get_param("eq.ebid.service.search.url", False)
         homepage_url = config_params.get_param("eq.ebid.homepage.url",False)
         if (company_url and not company_url.endswith('/')):
             company_url += '/'
         if (homepage_url and not homepage_url.endswith('/')):
             homepage_url += '/'
+        if (search_url and not search_url.endswith('/')):
+            search_url += '/'
         
         user = config_params.get_param("eq.ebid.user",False)
         pw = config_params.get_param("eq.ebid.pw",False)
@@ -55,7 +92,7 @@ class eq_partner_ebid(models.Model):
         rate = 90
         if (rate_txt):
             rate = int(rate_txt)
-        settings = eq_ebid_services.EbidSettings(user, pw, match_url, company_url, homepage_url, rate)        
+        settings = eq_ebid_services.EbidSettings(user, pw, match_url, company_url, search_url, homepage_url, rate)
         return settings
     
     def settings_ok(self, ebid_settings):
@@ -66,41 +103,103 @@ class eq_partner_ebid(models.Model):
         for i in xrange(0, len(l), n):
             yield l[i:i+n]
     
-    @api.v7
-    def eq_check_ebid_cron(self, cr,uid, ebid_search_mode = False, limit=0, check_interval=0, context=None):
+    # @api.v7
+    # def eq_check_ebid_cron(self, cr,uid, ebid_search_mode = False, limit=0, check_interval=0, context=None):
+    #     """
+    #     """
+    #     if (ebid_search_mode):
+    #         #interval
+    #         if (check_interval <= 0):
+    #             check_interval = 1
+    #         interval_text = "'" + str(check_interval) + " day'"
+    #
+    #
+    #         sql_select = """SELECT p.ID FROM res_partner p INNER JOIN eq_ebid_protocoll prot on prot.eq_res_id = p.id WHERE
+    #                         (coalesce(p.eq_ebid_no, '') <> '') AND (prot.write_date < (CURRENT_TIMESTAMP - INTERVAL """ + interval_text + """)) ORDER BY prot.write_date"""
+    #
+    #
+    #         if ((limit > 0) and (isinstance( limit, int ))):
+    #             sql_select += ' limit ' + str(limit)
+    #
+    #         cr.execute(sql_select)
+    #         partner_ids = [x[0] for x in cr.fetchall()]
+    #
+    #         if (partner_ids):
+    #             chunks = self.get_chunks(partner_ids, 200)
+    #             for list_part in chunks:
+    #                 check_partner = self.browse(cr,SUPERUSER_ID,list_part,context)
+    #                 if (check_partner):
+    #                     check_partner.get_company_data_for_ebid()
+    #
+    #         """ alt
+    #         search_filter = [('eq_ebid_no','!=', False)]
+    #         if (plz_filter):
+    #             search_filter.append(('zip','=like', str(plz_filter) + '%'))
+    #
+    #         check_partner_ids = self.search(cr, SUPERUSER_ID, search_filter)
+    #
+    #         if (check_partner_ids):
+    #             chunks = self.get_chunks(check_partner_ids, 200)
+    #             for list_part in chunks:
+    #                 check_partner = self.browse(cr,SUPERUSER_ID,list_part,context)
+    #                 if (check_partner):
+    #                     check_partner.get_company_data_for_ebid()
+    #         """
+    #     else:
+    #         #sql
+    #         sql_select = "SELECT p.ID FROM res_partner p LEFT OUTER JOIN eq_ebid_protocoll prot on prot.eq_res_id = p.id WHERE p.is_company AND (coalesce(p.eq_ebid_no,'') = '') AND prot.id is null"
+    #         if ((limit > 0) and (isinstance( limit, int ))):
+    #             sql_select += ' limit ' + str(limit)
+    #
+    #         cr.execute(sql_select)
+    #         partner_ids = [x[0] for x in cr.fetchall()]
+    #
+    #         #search_filter = [('eq_ebid_no','=',False), ('is_company','=', True)]
+    #         #if (plz_filter):
+    #          #   search_filter.append(('zip','=like', str(plz_filter) + '%'))
+    #
+    #         #alt
+    #         #check_partner_ids = self.search(cr, SUPERUSER_ID, search_filter)
+    #
+    #         if (partner_ids):
+    #             chunks = self.get_chunks(partner_ids, 200)
+    #             for list_part in chunks:
+    #                 partners_for_search = self.browse(cr,SUPERUSER_ID, list_part, context)
+    #                 partners_for_search.search_ebid()
+
+
+    def eq_check_ebid_cron(self, ebid_search_mode=False, limit=0, check_interval=0):
         """
-        """       
+        """
         if (ebid_search_mode):
-            #interval 
+            # interval
             if (check_interval <= 0):
                 check_interval = 1
             interval_text = "'" + str(check_interval) + " day'"
-            
-            
+
             sql_select = """SELECT p.ID FROM res_partner p INNER JOIN eq_ebid_protocoll prot on prot.eq_res_id = p.id WHERE 
                             (coalesce(p.eq_ebid_no, '') <> '') AND (prot.write_date < (CURRENT_TIMESTAMP - INTERVAL """ + interval_text + """)) ORDER BY prot.write_date"""
-                            
-                            
-            if ((limit > 0) and (isinstance( limit, int ))):
+
+            if ((limit > 0) and (isinstance(limit, int))):
                 sql_select += ' limit ' + str(limit)
-            
-            cr.execute(sql_select)
-            partner_ids = [x[0] for x in cr.fetchall()]
-            
+
+            self._cr.execute(sql_select)
+            partner_ids = [x[0] for x in self._cr.fetchall()]
+
             if (partner_ids):
                 chunks = self.get_chunks(partner_ids, 200)
                 for list_part in chunks:
-                    check_partner = self.browse(cr,SUPERUSER_ID,list_part,context)
+                    check_partner = self.browse(list_part)
                     if (check_partner):
                         check_partner.get_company_data_for_ebid()
-                        
+
             """ alt
             search_filter = [('eq_ebid_no','!=', False)]
             if (plz_filter):
                 search_filter.append(('zip','=like', str(plz_filter) + '%'))
-            
+
             check_partner_ids = self.search(cr, SUPERUSER_ID, search_filter)
-            
+
             if (check_partner_ids):
                 chunks = self.get_chunks(check_partner_ids, 200)
                 for list_part in chunks:
@@ -109,25 +208,25 @@ class eq_partner_ebid(models.Model):
                         check_partner.get_company_data_for_ebid()
             """
         else:
-            #sql
+            # sql
             sql_select = "SELECT p.ID FROM res_partner p LEFT OUTER JOIN eq_ebid_protocoll prot on prot.eq_res_id = p.id WHERE p.is_company AND (coalesce(p.eq_ebid_no,'') = '') AND prot.id is null"
-            if ((limit > 0) and (isinstance( limit, int ))):
+            if ((limit > 0) and (isinstance(limit, int))):
                 sql_select += ' limit ' + str(limit)
-                
-            cr.execute(sql_select)
-            partner_ids = [x[0] for x in cr.fetchall()]
-            
-            #search_filter = [('eq_ebid_no','=',False), ('is_company','=', True)]
-            #if (plz_filter):
-             #   search_filter.append(('zip','=like', str(plz_filter) + '%'))
-                
-            #alt
-            #check_partner_ids = self.search(cr, SUPERUSER_ID, search_filter)
-            
+
+            self._cr.execute(sql_select)
+            partner_ids = [x[0] for x in self._cr.fetchall()]
+
+            # search_filter = [('eq_ebid_no','=',False), ('is_company','=', True)]
+            # if (plz_filter):
+            #   search_filter.append(('zip','=like', str(plz_filter) + '%'))
+
+            # alt
+            # check_partner_ids = self.search(cr, SUPERUSER_ID, search_filter)
+
             if (partner_ids):
                 chunks = self.get_chunks(partner_ids, 200)
                 for list_part in chunks:
-                    partners_for_search = self.browse(cr,SUPERUSER_ID, list_part, context)
+                    partners_for_search = self.browse(list_part)
                     partners_for_search.search_ebid()
 
 
