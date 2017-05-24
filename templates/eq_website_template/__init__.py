@@ -22,3 +22,4 @@
 import controllers
 import models
 import eq_log
+import eq_odoo_helper
