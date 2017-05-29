@@ -32,6 +32,7 @@ class eq_ebid_config(models.TransientModel):
     eq_ebid_user = fields.Char("User", required=True)
     eq_ebid_pw = fields.Char(string ="Password", required=True)
     eq_ebid_acceptance_rate = fields.Integer("Acceptance rate")
+    eq_ebid_activate_log = fields.Boolean("Logging")
     
     """ Ebid get function """
     @api.multi
@@ -43,6 +44,8 @@ class eq_ebid_config(models.TransientModel):
         homepage = config_parameters.get_param("eq.ebid.homepage.url") or 'http://www.unternehmensverzeichnis.org/'
         user = config_parameters.get_param("eq.ebid.user")
         pw = config_parameters.get_param("eq.ebid.pw")
+        eq_ebid_activate_log_config_val = config_parameters.get_param("eq.ebid.activate.log")
+        eq_ebid_activate_log = True if (eq_ebid_activate_log_config_val == 'True' or eq_ebid_activate_log_config_val == 'true') else False
         acceptance_rate = config_parameters.get_param("eq.ebid.acceptance.rate") or 90
         return {
                 'eq_ebid_service_company_url': company_url,
@@ -52,6 +55,7 @@ class eq_ebid_config(models.TransientModel):
                 'eq_ebid_user': user,
                 'eq_ebid_pw': pw,
                 'eq_ebid_acceptance_rate': int(acceptance_rate),
+                'eq_ebid_activate_log': eq_ebid_activate_log
                 }
         
     """ Ebid set function  """    
@@ -59,11 +63,14 @@ class eq_ebid_config(models.TransientModel):
     def set_eq_ebid_data(self):
         config_parameters = self.env["ir.config_parameter"]
         for record in self:
+
+            config_log_val = 'True' if record.eq_ebid_activate_log else 'False'
+
             config_parameters.set_param("eq.ebid.service.company.url", record.eq_ebid_service_company_url or '',)
             config_parameters.set_param("eq.ebid.service.search.url", record.eq_ebid_service_search_url or '', )
             config_parameters.set_param("eq.ebid.service.match.url", record.eq_ebid_service_match_url or '',)
             config_parameters.set_param("eq.ebid.homepage.url", record.eq_ebid_homepage or '',)
             config_parameters.set_param("eq.ebid.user", record.eq_ebid_user or '',)
             config_parameters.set_param("eq.ebid.pw", record.eq_ebid_pw or '',)
+            config_parameters.set_param("eq.ebid.activate.log", config_log_val)
             config_parameters.set_param("eq.ebid.acceptance.rate", record.eq_ebid_acceptance_rate or 0,)
-    

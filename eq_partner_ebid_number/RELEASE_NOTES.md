@@ -1,5 +1,12 @@
 ## Modul eq_partner_ebid_number
 
+
+#### 29.05.2017
+#### Version 1.0.4
+##### CHG
+- Erweiterungen für Partner-Identifier und Logging
+
+
 #### 24.05.2017
 #### Version 1.0.3
 ##### CHG

@@ -39,6 +39,10 @@
                                  <label for="eq_ebid_acceptance_rate"/>
                                 <field name="eq_ebid_acceptance_rate" class="oe_inline" />
                             </div>
+                            <div>
+                                 <label for="eq_ebid_activate_log"/>
+                                <field name="eq_ebid_activate_log" class="oe_inline" />
+                            </div>
                         </div>
                     </group>
                 </form>

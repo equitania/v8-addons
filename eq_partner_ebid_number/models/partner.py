@@ -25,6 +25,8 @@ from openerp import SUPERUSER_ID
 from openerp.osv import osv
 from __builtin__ import str
 
+import logging
+_logger = logging.getLogger(__name__)
 
 # class eq_ebid_search_res(models.TransientModel):
 #     _name = 'eq.ebid.search.res'
@@ -78,6 +80,13 @@ class eq_partner_ebid(models.Model):
         company_url = config_params.get_param("eq.ebid.service.company.url",False)
         search_url = config_params.get_param("eq.ebid.service.search.url", False)
         homepage_url = config_params.get_param("eq.ebid.homepage.url",False)
+        logging_active_conf_val = config_params.get_param("eq.ebid.activate.log", False)
+
+        if logging_active_conf_val:
+            activate_log = True if (logging_active_conf_val == 'True' or logging_active_conf_val == 'true') else False
+        else:
+            activate_log = False
+
         if (company_url and not company_url.endswith('/')):
             company_url += '/'
         if (homepage_url and not homepage_url.endswith('/')):
@@ -92,7 +101,7 @@ class eq_partner_ebid(models.Model):
         rate = 90
         if (rate_txt):
             rate = int(rate_txt)
-        settings = eq_ebid_services.EbidSettings(user, pw, match_url, company_url, search_url, homepage_url, rate)
+        settings = eq_ebid_services.EbidSettings(user, pw, match_url, company_url, search_url, homepage_url, activate_log, rate)
         return settings
     
     def settings_ok(self, ebid_settings):

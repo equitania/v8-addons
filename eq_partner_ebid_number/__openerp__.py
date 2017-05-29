@@ -21,7 +21,7 @@
 
 {
     'name': 'Equitania EBID Integration Unternehmensverzeichnis.org',
-    'version': '1.0.3',
+    'version': '1.0.4',
     'description': """
         Equitania Software GmbH
     """,

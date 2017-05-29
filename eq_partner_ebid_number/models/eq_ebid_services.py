@@ -24,6 +24,10 @@ import json
 from openerp import models, fields, api, _
 from openerp.osv import osv
 from _ast import TryExcept
+
+
+import logging
+_logger = logging.getLogger(__name__)
     
    
    # def __init__(self, ebid_settings):
@@ -40,16 +44,22 @@ def check_authentication(ebid_settings):
 
 
 def settings_ok(settings):
-    return settings and settings.user and settings.pw and settings.urlMatch 
-    
+    return settings and settings.user and settings.pw and settings.urlMatch
+
 def get_ebid_settings(odoo_self):
     config_params = odoo_self.env['ir.config_parameter']
     match_url = config_params.get_param("eq.ebid.service.match.url",False)
     company_url = config_params.get_param("eq.ebid.service.company.url",False)
     search_url = config_params.get_param("eq.ebid.service.search.url", False)
     homepage_url = config_params.get_param("eq.ebid.homepage.url",False) or 'http://www.unternehmensverzeichnis.org/'
-    
-    print 'homepage_url: ' + str(homepage_url)
+
+    # logging
+    logging_active_conf_val = config_params.get_param("eq.ebid.activate.log", False)
+    if logging_active_conf_val:
+        logging_active = True if (logging_active_conf_val == 'True' or logging_active_conf_val == 'true') else False
+    else:
+        logging_active = False
+    # print 'homepage_url: ' + str(homepage_url)
     
     if (company_url and not company_url.endswith('/')):
         company_url += '/'
@@ -65,9 +75,38 @@ def get_ebid_settings(odoo_self):
     rate = 90
     if (rate_txt):
         rate = int(rate_txt)
-    settings = EbidSettings(user, pw, match_url, company_url, search_url, homepage_url, rate)
+    settings = EbidSettings(user, pw, match_url, company_url, search_url, homepage_url, logging_active, rate)
     return settings
-    
+
+
+def set_partner_identifier(ebid_settings):
+    header = {'content-type': 'application/json'}
+    contract_type = 'OdooAdminNutzer'
+    eq_partner_key = 'TODO'
+
+    url = "http://api.unternehmensverzeichnis.org/ws/crm/externalUserAdministration/rest/v2.0/externalLicenseContract/?externalLicenseKey=" + eq_partner_key + "&contractType=" + contract_type
+
+    try:
+        requestRes = requests.post(url, headers=header, auth=(ebid_settings.user, ebid_settings.pw))
+        jsonRes = requestRes.json()
+
+        if 'ErrorMessage' in jsonRes and jsonRes['ErrorMessage'] and ebid_settings.logging_active:
+            write_to_log(ebid_settings.logging_active, 'Error in eq_ebid_services.set_partner_identifier:' + jsonRes['ErrorMessage'])
+    except Exception, e:
+        if ebid_settings.logging_active:
+            write_to_log(ebid_settings.logging_active, 'Error in eq_ebid_services.set_partner_identifier: %s', True, e)
+
+
+
+def write_to_log(do_log, message, is_error=False, exc = None):
+    if not do_log:
+        return
+
+    if is_error:
+        _logger.error(message, exc)
+    else:
+        _logger.info(message)
+
 
 
 
@@ -79,6 +118,10 @@ def find_company(partner_id, searchParams, ebid_settings):
         jsonRes = requestRes.json()
     except Exception, e:
         findCompanyResult = GetEBIDRequestResult(partner_id, "res.partner", None, None, False, 'Error [request findCompany]: ' + e.message, 1, requestTxt,requestRes.text);
+
+        if ebid_settings.logging_active:
+            write_to_log(ebid_settings.logging_active, 'Error in eq_ebid_services.find_company: %s', True, e)
+
         return findCompanyResult
     
     success = False
@@ -112,7 +155,12 @@ def find_company(partner_id, searchParams, ebid_settings):
             error = "No result found"
     else:
         respAsText = requestRes.text
-        if (len(jsonRes) > 0):
+
+        if 'ErrorMessage' in jsonRes and jsonRes['ErrorMessage'] and ebid_settings.logging_active:
+            write_to_log(ebid_settings.logging_active, 'Error in eq_ebid_services.find_company:' + jsonRes['ErrorMessage'])
+
+
+        if (len(jsonRes) > 0) and 'ErrorMessage' in jsonRes:
             error =  jsonRes['ErrorMessage']
         else:
             error = "Error" #Todo
@@ -147,20 +195,28 @@ def get_company_for_ebid(partner_id, ebid, ebid_settings):
         requestRes = requests.get(ebid_settings.urlCompany + ebid, headers=header, auth=(ebid_settings.user, ebid_settings.pw))
         jsonRes = requestRes.json()
     except Exception, e:
+        if ebid_settings.logging_active:
+            write_to_log(ebid_settings.logging_active, 'Error in eq_ebid_services.get_company_for_ebid: %s', True, e)
+
         findCompanyResult = GetEBIDRequestResult(partner_id, "res.partner", None, None, False, 'Error [request get_company_for_ebid]: ' + e.message, 1, 'ebid: ' + ebid,requestRes.text);
         return findCompanyResult
      
     error = ''
     respAsText = ''
     success = False
+    search_res = False
     if requestRes.status_code == 200:
         success = True
         if (jsonRes) and (len(jsonRes) > 0):
             search_res = SearchForEBIDResult(ebid, jsonRes)
             
     else:
+        if 'ErrorMessage' in jsonRes and jsonRes['ErrorMessage'] and ebid_settings.logging_active:
+            write_to_log(ebid_settings.logging_active, 'Error in eq_ebid_services.get_company_for_ebid:' + jsonRes['ErrorMessage'])
+
+
         respAsText = requestRes.text
-        if (len(jsonRes) > 0):
+        if (len(jsonRes) > 0) and 'ErrorMessage' in jsonRes:
             error =  jsonRes['ErrorMessage']
     
     search_ebid_result = GetEBIDRequestResult(partner_id, "res.partner", None, search_res, success, error, 2, '',respAsText);
@@ -176,13 +232,14 @@ class request_result_info:
         
 class EbidSettings:
     
-    def __init__(self, user, pw, matchUrl, companyUrl, searchUrl, homepage, acceptance_rate = 90):
+    def __init__(self, user, pw, matchUrl, companyUrl, searchUrl, homepage, logging_active = False, acceptance_rate = 90):
         self.user = user
         self.pw = pw 
         self.urlMatch = matchUrl
         self.urlCompany = companyUrl
         self.urlSearch = searchUrl
         self.homepage = homepage
+        self.logging_active = logging_active
         self.acceptance_rate = acceptance_rate
         
 class GetEBIDRequestResult:
