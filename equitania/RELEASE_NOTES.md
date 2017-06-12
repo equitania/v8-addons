@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 12.06.2017
+### Version 1.1.161
+#### FIX
+- Auskommentiertes Feld eq_pos aus der Reportview entfernt.
+
 #### 15.05.2017
 ### Version 1.1.160
 #### ADD

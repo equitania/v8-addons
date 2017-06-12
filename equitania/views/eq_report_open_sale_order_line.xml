@@ -63,11 +63,11 @@
                                 <td>
                                     <strong><span t-field="o.eq_delivery_date"/></strong>
                                 </td>
-                                <td>
-                                    <strong>
-                                        <span t-field="o.eq_pos"/>
-                                    </strong>
-                                </td>
+                                <!--<td>-->
+                                    <!--<strong>-->
+                                        <!--<span t-field="o.eq_pos"/>-->
+                                    <!--</strong>-->
+                                <!--</td>-->
                                 <td class="text-right">
                                     <strong><span t-esc="get_qty(o.eq_quantity, o.eq_customer.lang)"/></strong>
                                 </td>
