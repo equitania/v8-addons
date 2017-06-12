@@ -27,9 +27,9 @@
                                 <th style="vertical-align:top!important;">
                                     <strong>Lieferdatum</strong>
                                 </th>
-                                <th style="vertical-align:top!important;">
-                                    <strong>Pos.</strong>
-                                </th>
+                                <!--<th style="vertical-align:top!important;">-->
+                                    <!--<strong>Pos.</strong>-->
+                                <!--</th>-->
                                 <th class="text-right" style="vertical-align:top!important;">
                                     <strong>Menge</strong>
                                 </th>
