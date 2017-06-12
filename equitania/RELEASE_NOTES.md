@@ -18,6 +18,11 @@ Vorgehensweise unter Debian:
 
 #### 12.06.2017
 ### Version 1.1.161
+#### CHG
+- Pos wieder zur Auftragspositionsliste hinzugefügt.
+
+#### 12.06.2017
+### Version 1.1.161
 #### FIX
 - Pos aus Überschrift entfernt.
 
