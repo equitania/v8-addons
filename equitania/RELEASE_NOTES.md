@@ -17,12 +17,12 @@ Vorgehensweise unter Debian:
 `fc-cache -f -v`
 
 #### 12.06.2017
-### Version 1.1.161
+### Version 1.1.163
 #### CHG
 - Pos wieder zur Auftragspositionsliste hinzugefügt.
 
 #### 12.06.2017
-### Version 1.1.161
+### Version 1.1.162
 #### FIX
 - Pos aus Überschrift entfernt.
 
