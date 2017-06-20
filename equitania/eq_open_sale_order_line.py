@@ -88,7 +88,7 @@ class eq_open_sale_order_line(models.Model):
                         sale_order.id = main.order_id
                 ) AS eq_customer,
                 main.eq_delivery_date,
-                --main.sequence AS eq_pos,
+                main.sequence AS eq_pos,
                 (select sum(line2.product_uom_qty) from sale_order_line line2 where line2.order_id = main.order_id and line2.product_id = main.product_id) AS eq_quantity,
                 --re.Qleft  as eq_quantity_left,
 
@@ -200,6 +200,7 @@ class eq_open_sale_order_line(models.Model):
                 ),
                 main.eq_delivery_date,
                 --main.product_uom_qty ,
+                main.sequence,
                 main.product_id,
                 (
                     SELECT

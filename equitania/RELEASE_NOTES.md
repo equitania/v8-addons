@@ -16,6 +16,16 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 20.06.2017
+### Version 1.1.165
+#### ADD
+- eq_pos in Form-View und Tree View eingefügt und durch das SQL-Statement Statement zur Auftragspositionsliste befüllt.
+
+#### 14.06.2017
+### Version 1.1.164
+#### CHG
+- Pos in die Form-View und Tree-View wieder eingefügt.
+
 #### 12.06.2017
 ### Version 1.1.163
 #### CHG
