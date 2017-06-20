@@ -178,7 +178,7 @@ class eq_mail_mail(osv.Model):
         else:
             address = False
             default_mail_address = False
-            
+
         
         ########
         for mail in self.browse(cr, SUPERUSER_ID, ids, context=context):
@@ -211,6 +211,22 @@ class eq_mail_mail(osv.Model):
                 bounce_alias = self.pool['ir.config_parameter'].get_param(cr, uid, "mail.bounce.alias", context=context)
                 catchall_domain = self.pool['ir.config_parameter'].get_param(cr, uid, "mail.catchall.domain", context=context)
 
+                user = context.get('user_id', SUPERUSER_ID)
+                if user != SUPERUSER_ID:
+                    mail_server = ir_mail_server.search(cr, uid, [('user_id', '=', user)], context=context)
+                    mail_server_obj = ir_mail_server.browse(cr, uid, mail_server)
+                    values = {
+                        'email_from': mail_server_obj.user_id.login,
+                        'reply_to': mail_server_obj.user_id.login
+                    }
+                    self.write(cr, uid, ids, values)
+                else:
+                    partner_id = mail.author_id.id
+                    res_users_pool = self.pool.get('res.users')
+                    res_users_id = res_users_pool.search(cr, uid, [('partner_id', '=', partner_id)], context=context)
+                    mail_server = ir_mail_server.search(cr, uid, [('user_id', '=', res_users_id)], context=context)
+
+
 ### Übernahme der Anpassung vom Equitania Modul (siehe ReleaseNotes des Equitania Moduls vom 15.01.2016)               
                 if bounce_alias and catchall_domain:
                     headers['Return-Path'] = '%s@%s' % (bounce_alias, catchall_domain)
@@ -223,9 +239,7 @@ class eq_mail_mail(osv.Model):
 #                         headers['Return-Path'] = '%s-%d-%s-%d@%s' % (bounce_alias, mail.id, mail.model, mail.res_id, catchall_domain)
 #                     else:
 #                         headers['Return-Path'] = '%s-%d@%s' % (bounce_alias, mail.id, catchall_domain)
-                        
-                        
-                        
+
                         
                 if mail.headers:
                     try:
@@ -241,17 +255,7 @@ class eq_mail_mail(osv.Model):
 
                 # build an RFC2822 email.message.Message object and send it without queuing
                 res = None
-                mail_server = False
-                user = context.get('user_id', SUPERUSER_ID)
 
-                if user != SUPERUSER_ID:
-                    mail_server = ir_mail_server.search(cr, uid, [('user_id', '=', user)], context=context)
-
-                else:
-                    partner_id = mail.author_id.id
-                    res_users_pool = self.pool.get('res.users')
-                    res_users_id = res_users_pool.search(cr, uid, [('partner_id', '=', partner_id)], context=context)
-                    mail_server = ir_mail_server.search(cr, uid, [('user_id', '=', res_users_id)], context=context)
 
                 for email in email_list:
                     if not mail_server and default_mail_address:

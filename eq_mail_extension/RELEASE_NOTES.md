@@ -1,5 +1,10 @@
 ## Modul eq_mail_extension
 
+#### 20.06.2017
+#### Version 1.0.11
+##### FIX/CHG
+- Jira Issue OBA-30: Return-Path, email_from und reply_to werden nach dem Mail Server entsprechend gesetzt (nach der Emailadresse, welcher bei dem User hinterlegt ist).
+
 #### 10.05.2017
 #### Version 1.0.10
 ##### CHG
