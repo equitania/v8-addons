@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 22.06.2017
+### Version 1.1.166
+#### ADD/CHG
+- Ticket 4420 Workaround: Neuer Eintrag unter dem Button Druck mit der Benennung 'Auftragspositionsliste drucken'. Hier wird ein Wizard aufgerufen mit dem die extrem langen Ladezeiten verhindert werden konnten.
+
 #### 20.06.2017
 ### Version 1.1.165
 #### ADD

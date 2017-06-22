@@ -44,7 +44,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr t-foreach="docs" t-as="o">
+                            <tr t-foreach="get_records()" t-as="o">
                                 <td>
                                     <strong><span t-field="o.eq_order_id"/></strong>
                                     <br/>

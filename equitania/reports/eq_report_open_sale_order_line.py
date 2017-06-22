@@ -21,6 +21,7 @@
 
 import time
 from openerp.osv import osv
+from openerp import api
 from openerp.report import report_sxw
 
 class eq_report_open_sale_order_line(report_sxw.rml_parse):
@@ -32,6 +33,7 @@ class eq_report_open_sale_order_line(report_sxw.rml_parse):
             'get_qty':self.get_qty,
             'get_price': self.get_price,
             'get_standard_price': self.get_standard_price,
+            'get_records': self._get_records,
         })
         
     
@@ -45,6 +47,21 @@ class eq_report_open_sale_order_line(report_sxw.rml_parse):
     
     def get_standard_price(self, object, language, currency_id):
         return self.pool.get("eq_report_helper").get_standard_price(self.cr, self.uid, object, language, currency_id)
+
+
+    def _get_records(self):
+        """
+            Get all records created by wizard and show them as lines in table
+            @return: An array with all created records from eq_product_sales_data table
+        """
+
+        result = []
+        table = self.pool.get('eq_buffer_order_line_list')
+        ids = table.search(self.cr, self.uid, [])
+        for id in ids:
+            result.append(table.browse(self.cr, self.uid, id))
+
+        return result
           
     
 class report_lunchorder(osv.AbstractModel):

@@ -27,3 +27,4 @@ import eq_product_analysis
 import eq_product_sales
 import eq_partner_wiz
 import eq_crm_lead_to_opportunity
+import eq_list_print_wiz

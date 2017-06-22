@@ -206,6 +206,7 @@ msgstr "Kalenderwoche"
 #: view:eq.date.done.change:equitania.eq_date_done_form_view
 #: view:eq.product.select.case.section.wiz:equitania.eq_select_crm_case_section_wiz
 #: view:eq_info_optional:equitania.eq_info_optional_form_view
+#: view:eq_list.print.wiz:equitania.eq_print_wiz
 #: view:eq_pricelist_item_search:equitania.eq_pricelist_item_search_form_view
 #: view:equitania.product.analysis.report.wiz:equitania.eq_product_analysis_report_wiz_view
 #: view:equitania.product.sales.report.wiz:equitania.eq_product_sales_report_wiz_view
@@ -1522,10 +1523,17 @@ msgid "Pricelist item"
 msgstr "Preisliste Einzelposition"
 
 #. module: equitania
+#: view:eq_list.print.wiz:equitania.eq_print_wiz
 #: view:equitania.product.analysis.report.wiz:equitania.eq_product_analysis_report_wiz_view
 #: view:equitania.product.sales.report.wiz:equitania.eq_product_sales_report_wiz_view
+#: model:ir.actions.act_window,name:equitania.action_eq_print_wiz
 msgid "Print"
 msgstr "Drucken"
+
+#. module: equitania
+#: model:ir.actions.act_window,name:equitania.eq_list_print_wiz
+msgid "Print List"
+msgstr "Auftragspositionsliste drucken"
 
 #. module: equitania
 #: view:website:equitania.report_invoice_data
@@ -2558,6 +2566,7 @@ msgstr "oe_left"
 #: view:eq.date.done.change:equitania.eq_date_done_form_view
 #: view:eq.product.select.case.section.wiz:equitania.eq_select_crm_case_section_wiz
 #: view:eq_info_optional:equitania.eq_info_optional_form_view
+#: view:eq_list.print.wiz:equitania.eq_print_wiz
 #: view:eq_multy_assign_product_no:equitania.eq_multy_assign_product_no_form_view
 #: view:eq_pricelist_item_search:equitania.eq_pricelist_item_search_form_view
 #: view:equitania.product.analysis.report.wiz:equitania.eq_product_analysis_report_wiz_view
