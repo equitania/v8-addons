@@ -174,18 +174,31 @@ class eq_report_helper(osv.osv_memory):
             @context: Context
             @return: True (show gross price) if tax is (19% Umsatzsteuer or 7% Umsatzsteuer) and price_include = true
         """
-                
         tax_obj = self.pool.get('account.tax')
-        sale_order_line_obj = self.pool.get('sale.order.line')
-        sale_line_ids = sale_order_line_obj.search(cr, uid, [('order_id', '=', order.id),], context=context)
-        for line_id in sale_line_ids:
-            sale_order_line = sale_order_line_obj.browse(cr, uid, line_id, context=context)
-            tax_id = sale_order_line.tax_id.id
-            if tax_id:
-                tax = tax_obj.browse(cr, uid, tax_id, context=context)
-                
-                if ("19% Umsatzsteuer" in tax.name or "7% Umsatzsteuer" in tax.name) and tax.price_include is True:
-                    return True
+        if order._name == "account.invoice":
+            # schnelle Lösung für unser Problem mit Rechnung und Netto / Brutto (SODY - 22.6.2017)
+            sale_order_line_obj = self.pool.get('account.invoice.line')
+            sale_line_ids = sale_order_line_obj.search(cr, uid, [('invoice_id', '=', order.id), ], context = context)
+            for line_id in sale_line_ids:
+                sale_order_line = sale_order_line_obj.browse(cr, uid, line_id, context = context)
+                tax_id = sale_order_line.invoice_line_tax_id.id
+                if tax_id:
+                    tax = tax_obj.browse(cr, uid, tax_id, context = context)
+
+                    if ("19% Umsatzsteuer" in tax.name or "7% Umsatzsteuer" in tax.name) and tax.price_include is True:
+                        return True
+        else:
+            sale_order_line_obj = self.pool.get('sale.order.line')
+            sale_line_ids = sale_order_line_obj.search(cr, uid, [('order_id', '=', order.id),], context=context)
+
+            for line_id in sale_line_ids:
+                sale_order_line = sale_order_line_obj.browse(cr, uid, line_id, context=context)
+                tax_id = sale_order_line.tax_id.id
+                if tax_id:
+                    tax = tax_obj.browse(cr, uid, tax_id, context=context)
+
+                    if ("19% Umsatzsteuer" in tax.name or "7% Umsatzsteuer" in tax.name) and tax.price_include is True:
+                        return True
         
         return False    
     

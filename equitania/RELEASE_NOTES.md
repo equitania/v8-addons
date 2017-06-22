@@ -17,6 +17,11 @@ Vorgehensweise unter Debian:
 `fc-cache -f -v`
 
 #### 22.06.2017
+### Version 1.1.167
+#### FIX
+- schnelle Lösung für unser Problem mit Rechnung und Netto / Brutto (SODY - 22.6.2017)
+
+#### 22.06.2017
 ### Version 1.1.166
 #### ADD/CHG
 - Ticket 4420 Workaround: Neuer Eintrag unter dem Button Druck mit der Benennung 'Auftragspositionsliste drucken'. Hier wird ein Wizard aufgerufen mit dem die extrem langen Ladezeiten verhindert werden konnten.
