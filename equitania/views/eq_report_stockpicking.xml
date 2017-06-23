@@ -327,7 +327,7 @@
 											<span t-field="move.location_id" />
 										</td>
 									</t>
-									<td>
+									<td class="barcode">
 										<span t-if="move.product_id and move.product_id.ean13">
 											<img
 												t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', move.product_id.ean13, 600, 100)"
