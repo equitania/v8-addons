@@ -16,12 +16,16 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
-
 #### 23.06.2017
-### Version 1.1.168
+### Version 1.1.169
 #### FIX
 - eq_report_helper: Begrenzung auf feste Steuernamen in Methode check_if_display_gross_price entfernt
 
+
+#### 23.06.2017
+### Version 1.1.168
+#### ADD
+- auf dem Lieferschein (Stock_report_picking.xml)dem Barcode die class="barcode" gegeben
 
 
 #### 22.06.2017
