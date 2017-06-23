@@ -16,6 +16,14 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+
+#### 23.06.2017
+### Version 1.1.168
+#### FIX
+- eq_report_helper: Begrenzung auf feste Steuernamen in Methode check_if_display_gross_price entfernt
+
+
+
 #### 22.06.2017
 ### Version 1.1.167
 #### FIX

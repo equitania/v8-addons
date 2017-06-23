@@ -184,9 +184,10 @@ class eq_report_helper(osv.osv_memory):
                 tax_id = sale_order_line.invoice_line_tax_id.id
                 if tax_id:
                     tax = tax_obj.browse(cr, uid, tax_id, context = context)
-
-                    if ("19% Umsatzsteuer" in tax.name or "7% Umsatzsteuer" in tax.name) and tax.price_include is True:
+                    if tax.price_include:
                         return True
+                    # if ("19% Umsatzsteuer" in tax.name or "7% Umsatzsteuer" in tax.name) and tax.price_include is True:
+                    #     return True
         else:
             sale_order_line_obj = self.pool.get('sale.order.line')
             sale_line_ids = sale_order_line_obj.search(cr, uid, [('order_id', '=', order.id),], context=context)
@@ -196,9 +197,10 @@ class eq_report_helper(osv.osv_memory):
                 tax_id = sale_order_line.tax_id.id
                 if tax_id:
                     tax = tax_obj.browse(cr, uid, tax_id, context=context)
-
-                    if ("19% Umsatzsteuer" in tax.name or "7% Umsatzsteuer" in tax.name) and tax.price_include is True:
+                    if tax.price_include:
                         return True
+                    # if ("19% Umsatzsteuer" in tax.name or "7% Umsatzsteuer" in tax.name) and tax.price_include is True:
+                    #     return True
         
         return False    
     
