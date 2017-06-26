@@ -16,6 +16,12 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 26.06.2017
+### Version 1.1.170
+#### FIX/CHG
+- Bei der Bezeichnung aus der Auftragspositionsliste wird jetzt der deutsche Wert gezogen (Ticket 4459).
+
+
 #### 23.06.2017
 ### Version 1.1.169
 #### FIX

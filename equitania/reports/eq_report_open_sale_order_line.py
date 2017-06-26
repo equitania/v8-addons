@@ -34,6 +34,8 @@ class eq_report_open_sale_order_line(report_sxw.rml_parse):
             'get_price': self.get_price,
             'get_standard_price': self.get_standard_price,
             'get_records': self._get_records,
+            'get_translated_productname': self.get_translated_productname,
+            'get_product_no': self.get_product_no
         })
         
     
@@ -61,6 +63,23 @@ class eq_report_open_sale_order_line(report_sxw.rml_parse):
         for id in ids:
             result.append(table.browse(self.cr, self.uid, id))
 
+        return result
+
+    def get_translated_productname(self,obj):
+        tmpl_id = obj.product_tmpl_id.id
+        ir_translation_id = self.pool.get('ir.translation').search(self.cr, self.uid, [('res_id', '=', tmpl_id), ('name', '=', 'product.template,name')])
+        if ir_translation_id:
+            ir_translation_obj = self.pool.get('ir.translation').browse(self.cr,self.uid,ir_translation_id)
+            result = ir_translation_obj.value
+        else:
+            product_id = self.pool.get('product.template').search(self.cr, self.uid,[('id', '=', tmpl_id)])
+            product_obj = self.pool.get('product.template').browse(self.cr,self.uid,product_id)
+            result = product_obj.name
+        return result
+
+    def get_product_no(self,obj):
+        if len(obj) > 0 :
+            result = '[' + obj.default_code + ']'
         return result
           
     

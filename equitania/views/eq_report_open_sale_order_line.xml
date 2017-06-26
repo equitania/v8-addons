@@ -75,7 +75,9 @@
                                     <strong><span t-esc="get_qty(o.eq_quantity_left, o.eq_customer.lang)"/></strong>
                                 </td>
                                 <td>
-                                    <strong><span t-field="o.eq_product_no"/></strong>
+                                    <strong><span t-esc="get_product_no(o.eq_product_no)"/></strong>
+                                    <br/>
+                                    <strong><span t-esc="get_translated_productname(o.eq_product_no)"/></strong>
                                     <br/>
 	                                    <span t-field="o.eq_drawing_no"/>	                                
                                 </td>
