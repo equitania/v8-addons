@@ -116,6 +116,8 @@ class res_partner(models.Model):
     eq_unlocked_for_webshop = fields.Boolean(string="Unlocked for webshop",required=False, default=False)
     eq_sale_quotation_count = fields.Integer(compute="_sale_quotation_count", string='# of Quotations')
     sale_order_count = fields.Integer(compute="_sale_quotation_count", string='# of Orders')
+
+    source_id = fields.Many2one('crm.tracking.source', string='Source', help="This is the source of the link Ex: Search Engine, another domain, or name of email list")
     
     
     @api.one

@@ -2907,3 +2907,14 @@ msgstr "E-Mail Passwort zurücksetzen"
 #: field:base.config.settings,default_reset_passwort:0
 msgid "Send a reset-password email, if a new user will created. [equitania]"
 msgstr "Es wird eine E-Mail zum Passwort zurücksetzen versendet, sobald ein neuer Benutzer angelegt wird. [equitania]"
+
+
+#. module: equitania
+#: field:res.partner,source_id:0
+msgid "Source"
+msgstr "Herkunft"
+
+#. module: equitania
+#: help:res.partner,source_id:0
+msgid "This is the source of the link Ex: Search Engine, another domain, or name of email list"
+msgstr "Hier können Sie die Herkunft neuer Interessenten vermerken: Suchmaschine, Webseite, E-Mail Liste, usw."

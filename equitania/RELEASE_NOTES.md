@@ -18,6 +18,12 @@ Vorgehensweise unter Debian:
 
 
 #### 27.06.2017
+### Version 1.1.172
+#### CHG
+- Ticket 4382: Feld Herkunft für Partner
+
+
+#### 27.06.2017
 ### Version 1.1.171
 #### FIX
 - Ticket 4466: Korrektur für Rechnungsreport (Anzeige Lieferdatum)
