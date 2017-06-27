@@ -431,10 +431,12 @@
 										<span style="font-weight:bold;">
 											Delivery No.
 											<span t-field="l.eq_move_id.picking_id.name" />
-											from
-											<span
-												t-esc="l.eq_move_id.picking_id.date_done.split(' ')[0].split('-')[2] + '.' + l.eq_move_id.picking_id.date_done.split(' ')[0].split('-')[1] + '.' + l.eq_move_id.picking_id.date_done.split(' ')[0].split('-')[0]" />
-											/ Delivery Date (the date of service)
+											<t t-if="l.eq_move_id.picking_id.date_done">
+												from
+												<span
+													t-esc="l.eq_move_id.picking_id.date_done.split(' ')[0].split('-')[2] + '.' + l.eq_move_id.picking_id.date_done.split(' ')[0].split('-')[1] + '.' + l.eq_move_id.picking_id.date_done.split(' ')[0].split('-')[0]" />
+												/ Delivery Date (the date of service)
+											</t>
 										</span>
 									</td>
 								</tr>

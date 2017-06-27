@@ -16,6 +16,13 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+
+#### 27.06.2017
+### Version 1.1.171
+#### FIX
+- Ticket 4466: Korrektur für Rechnungsreport (Anzeige Lieferdatum)
+
+
 #### 26.06.2017
 ### Version 1.1.170
 #### FIX/CHG
