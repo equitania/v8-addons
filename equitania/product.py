@@ -38,7 +38,15 @@ class eq_product_product_new_api(models.Model):
     
     @api.model
     def name_search(self, name, args=None, operator='ilike', limit=100):
-        if self._context.get('eq_filter_prod_sup'):
+        """
+        Anpassung der Produktsuche: Falls Context angepasst wurde (zBsp. View für Bestellung) für Einschrönkung der Suche auf die Produkte eines Lieferanten
+        :param name:
+        :param args:
+        :param operator:
+        :param limit:
+        :return:
+        """
+        if self._context.get('eq_filter_prod_sup') and self._context['eq_partner_id']:
             partner_id = self._context['eq_partner_id']
             sql_query = """select product_tmpl_id from product_supplierinfo where name = %s""" % (partner_id)
             self._cr.execute(sql_query)

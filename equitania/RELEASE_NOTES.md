@@ -16,6 +16,12 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+
+#### 29.06.2017
+### Version 1.1.174
+#### CHG
+- Ticket 4415: Einstellung "Nur Produkte des ausgewählten Lieferanten sind wählbar" für Produktwahl im Grid der Bestellpositionnen nutzen
+
 #### 29.06.2017
 ### Version 1.1.173
 #### CHG
