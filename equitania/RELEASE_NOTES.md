@@ -16,6 +16,10 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 29.06.2017
+### Version 1.1.173
+#### CHG
+- Korrektur Übersetzung:  "Order no." von Auftrag-Nr. in "Auftragsnr." der Einheitlichkeit wegen
 
 #### 27.06.2017
 ### Version 1.1.172

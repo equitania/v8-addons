@@ -1374,7 +1374,7 @@ msgstr "Bestelldatum"
 #. module: equitania
 #: view:website:equitania.eq_external_layout_header_sale_order_data
 msgid "Order no."
-msgstr "Auftrag-Nr."
+msgstr "Auftragsnr."
 
 #. module: equitania
 #: view:website:equitania.eq_external_layout_header_purchase_order_data
