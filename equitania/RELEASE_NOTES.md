@@ -17,6 +17,14 @@ Vorgehensweise unter Debian:
 `fc-cache -f -v`
 
 
+#### 03.07.2017
+### Version 1.1.175
+#### FIX
+- Zendesk-4458, Korrektur der Funktion get_translated_productname in der Klasse eq_report_open_sale_order_line. Damit wir kein Problem mehr mit Singleton haben, wird aus der Liste immer die erste Position geladen<br/>
+<br/><b>! Wichtig !</b><br/>
+Nach dem Update noch das Modul eq_framework_agreement aktualisieren !
+
+
 #### 29.06.2017
 ### Version 1.1.174
 #### CHG

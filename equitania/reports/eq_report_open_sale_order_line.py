@@ -69,7 +69,14 @@ class eq_report_open_sale_order_line(report_sxw.rml_parse):
         tmpl_id = obj.product_tmpl_id.id
         ir_translation_id = self.pool.get('ir.translation').search(self.cr, self.uid, [('res_id', '=', tmpl_id), ('name', '=', 'product.template,name')])
         if ir_translation_id:
-            ir_translation_obj = self.pool.get('ir.translation').browse(self.cr,self.uid,ir_translation_id)
+            id_to_select = None
+            if len(ir_translation_id) > 1:
+                id_to_select = ir_translation_id[0]             # wir haben hier mehrere Positionen zurückbekommen und wollen kein Singletonfehler haben..also...es wird die erste Position geladen
+            else:
+                id_to_select = ir_translation_id
+
+            #ir_translation_obj = self.pool.get('ir.translation').browse(self.cr,self.uid,ir_translation_id)
+            ir_translation_obj = self.pool.get('ir.translation').browse(self.cr, self.uid, id_to_select)
             result = ir_translation_obj.value
         else:
             product_id = self.pool.get('product.template').search(self.cr, self.uid,[('id', '=', tmpl_id)])
