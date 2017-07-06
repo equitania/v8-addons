@@ -1,5 +1,12 @@
 ## eq_report_pattern 
 
+
+#### 06.07.2017
+#### Version 1.0.4
+##### CHG
+- Ticket 3688: Anpassung der Rechte für sale.quite.line
+
+
 #### 07.11.2016
 #### Version 1.0.3
 ##### Erweiterung
