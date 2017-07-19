@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 19.07.2017
+### Version 1.1.176
+#### FIX
+- Workaround zu Ticket #4569: "Erweiterte Suche" über Datum-Felder mit Timestamp lieferte keine Ergebnisse. Workaround geschaffen: search_read Methode in den jeweiligen Modellen neu eingefügt.
+('sale.order','stock.move','stock.quant','stock.picking','account.invoice','mrp.production','mrp.production.workcenter.line','report.stock.lines.date')
 
 #### 03.07.2017
 ### Version 1.1.175

@@ -56,3 +56,4 @@ import eq_email_template
 import res_country
 import eq_pricelist_partnerinfo
 import account_voucher
+import eq_search_read
