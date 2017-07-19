@@ -17,6 +17,12 @@ Vorgehensweise unter Debian:
 `fc-cache -f -v`
 
 #### 19.07.2017
+### Version 1.1.177
+#### CHG
+- Zusatz zu Version 1.1.176: search_read zu mrp.production und mrp.production.workcenter.line auskommentiert
+Angepasste Modelle: ('sale.order','stock.move','stock.quant','stock.picking','account.invoice','report.stock.lines.date')
+
+#### 19.07.2017
 ### Version 1.1.176
 #### FIX
 - Workaround zu Ticket #4569: "Erweiterte Suche" über Datum-Felder mit Timestamp lieferte keine Ergebnisse. Workaround geschaffen: search_read Methode in den jeweiligen Modellen neu eingefügt.
