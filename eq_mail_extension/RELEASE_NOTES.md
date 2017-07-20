@@ -1,5 +1,10 @@
 ## Modul eq_mail_extension
 
+#### 20.07.2017
+#### Version 1.0.12
+##### FIX/CHG
+- BugFix aus Odoo 10 Version übernommen (Wenn kein Standard-Mailserver vorhanden ist)
+
 #### 20.06.2017
 #### Version 1.0.11
 ##### FIX/CHG

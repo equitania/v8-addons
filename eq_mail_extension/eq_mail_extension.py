@@ -295,9 +295,13 @@ class eq_mail_mail(osv.Model):
                             subtype_alternative='plain',
                             headers=headers)
                         msg['Return-Path'] = mail.email_from
-                        res = ir_mail_server.send_email(cr, uid, msg,
-                                                        mail_server_id=mail_server[0],
-                                                        context=context)
+
+                        if len(mail_server) == 0:
+                            pass
+                        else:
+                            res = ir_mail_server.send_email(cr,uid,msg,
+                                                            mail_server_id=mail_server[0],
+                                                            context=context)
 
                 if res:
                     mail.write({'state': 'sent', 'message_id': res})
