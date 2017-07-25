@@ -31,5 +31,17 @@
 	            </form>
 	    	</field>
     	</record>
+
+		<record id="action_document_template" model="ir.actions.act_window">
+            <field name="name">Document Templates</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">eq.document.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+		<menuitem action="action_document_template" id="menu_document_template" parent="base.menu_base_config" sequence="7" groups="base.group_sale_salesman,base.group_sale_manager"/>
+
+
     </data>
 </openerp>

@@ -1,6 +1,11 @@
 ## eq_report_pattern 
 
 
+#### 25.07.2017
+#### Version 1.0.5
+##### ADD
+- Unter Verkauf -> Konfiguration -> ein neuen Menüeintrag "Dokumentenvorlagen" eingefügt. Hier können jetzt die Dokumentenvorlagen auch gelöscht werden.
+
 #### 06.07.2017
 #### Version 1.0.4
 ##### CHG
