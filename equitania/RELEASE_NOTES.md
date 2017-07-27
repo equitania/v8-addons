@@ -17,6 +17,11 @@ Vorgehensweise unter Debian:
 `fc-cache -f -v`
 
 #### 27.07.2017
+### Version 1.1.179
+#### FIX
+- Ticket #4622 Lieferschein: Andruck der Lieferadresse wenn der Kunde keine Firma ist (ohne Parent name und ohne c/o)
+
+#### 27.07.2017
 ### Version 1.1.178
 #### ADD/FIX
 - Ticket #4625
