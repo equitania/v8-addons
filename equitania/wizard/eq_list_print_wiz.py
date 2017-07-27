@@ -27,7 +27,7 @@ class eq_list_print_wiz(models.Model):
 
     @api.multi
     def print_list(self):
-        self._cr.execute('delete from eq_buffer_order_line_list')
+        self._cr.execute('delete from eq_buffer_order_line_list where create_uid = %s and write_uid = %s', (self._uid,self._uid))
 
         list_pool = self.env['eq_open_sale_order_line']
         selected_ids = list_pool.browse(self.env.context['active_ids'])

@@ -16,6 +16,13 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 27.07.2017
+### Version 1.1.178
+#### ADD/FIX
+- Ticket #4625
+- Problem: Auftragspositionsliste hat beim 1. Ausdruck fehlerhafte/falsche Artikel angezeigt
+- Lösung: Es wird nun explizit darauf abgefragt, von wem der Druck stammt (create_uid,write_uid)
+
 #### 19.07.2017
 ### Version 1.1.177
 #### CHG

@@ -59,7 +59,7 @@ class eq_report_open_sale_order_line(report_sxw.rml_parse):
 
         result = []
         table = self.pool.get('eq_buffer_order_line_list')
-        ids = table.search(self.cr, self.uid, [])
+        ids = table.search(self.cr, self.uid, [('create_uid','=',self.uid),('write_uid','=',self.uid)])
         for id in ids:
             result.append(table.browse(self.cr, self.uid, id))
 
