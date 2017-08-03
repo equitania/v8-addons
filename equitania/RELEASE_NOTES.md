@@ -20,7 +20,9 @@ Vorgehensweise unter Debian:
 #### 03.08.2017
 ### Version 1.1.180
 #### FIX
-- Ticket #4662 Auf dem Lieferschein werden nun unter weiteren Adress-Möglichkeiten auch die eq_name2 und eq_name3 angezeigt 
+- Ticket #4662 Auf dem Lieferschein werden nun unter weiteren Adress-Möglichkeiten auch die eq_name2 und eq_name3 angezeigt
+- Klassenkopf von eq_list_transient_model(models.TransientModel) auf eq_list_transient_model(models.Model) geändert
+- Auswirkung => Temporäre Klasse hat Datensätze vor dem Druck der Liste geleert
 
 #### 27.07.2017
 ### Version 1.1.179
