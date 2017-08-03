@@ -47,13 +47,14 @@ class eq_list_print_wiz(models.Model):
             }
 
             self.env['eq_buffer_order_line_list'].create(vals)
+            print"create"
 
 
         search_result = self.env['eq_buffer_order_line_list'].search([])[0]
 
         return self.env['report'].get_action(search_result,'equitania.report_open_sale_order_line')
 
-class eq_list_transient_model(models.TransientModel):
+class eq_list_transient_model(models.Model):
     _name = 'eq_buffer_order_line_list'
 
     eq_order_id = fields.Many2one('sale.order', string="Sale Order")

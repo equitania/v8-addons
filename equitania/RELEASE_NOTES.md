@@ -16,6 +16,12 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 03.08.2017
+### Version 1.1.180
+#### FIX
+- Klassenkopf von eq_list_transient_model(models.TransientModel) auf eq_list_transient_model(models.Model) geändert
+- Auswirkung => Temporäre Klasse hat Datensätze vor dem Druck der Liste geleert
+
 #### 27.07.2017
 ### Version 1.1.179
 #### FIX

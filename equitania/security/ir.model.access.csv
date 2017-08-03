@@ -14,3 +14,4 @@ access_equitania_address_search_purchase,equitania_address_search_purchase,model
 access_equitania_address_search_sale,equitania_address_search_sale,model_eq_address_search,base.group_sale_salesman,1,1,1,1
 access_res_users_eq,eq_res_users_eq,model_res_users,base.group_user,1,1,1,1
 access_eq_updates_wiz_manager,access_eq_updates_wiz_manager,model_eq_list_print_wiz,base.group_sale_salesman,1,1,1,1
+access_eq_buffer_order_line_list,access_eq_buffer_order_line_list,model_eq_buffer_order_line_list,base.group_user,1,1,1,1
