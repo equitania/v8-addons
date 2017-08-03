@@ -47,7 +47,7 @@ class eq_list_print_wiz(models.Model):
             }
 
             self.env['eq_buffer_order_line_list'].create(vals)
-            print"create"
+
 
 
         search_result = self.env['eq_buffer_order_line_list'].search([])[0]
