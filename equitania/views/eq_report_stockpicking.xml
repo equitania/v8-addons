@@ -167,6 +167,8 @@
 								<div t-if="o.partner_id.parent_id.eq_name2" t-field="o.partner_id.parent_id.eq_name2" style="clear:left;"/>
 								<div t-if="o.partner_id.parent_id.eq_name3" t-field="o.partner_id.parent_id.eq_name3" style="clear:left;"/>
 								<div style="clear:left;"><span t-if="o.partner_id.parent_id.name and o.partner_id.parent_id.is_company == True">c/o </span><span t-if="o.partner_id.title.name" t-field="o.partner_id.title.name"/> <span t-if="o.partner_id.eq_firstname" t-field="o.partner_id.eq_firstname"/> <span t-field="o.partner_id.name"/></div>
+								<div t-if="o.partner_id.eq_name2" t-field="o.partner_id.eq_name2" style="clear:left;"/>
+								<div t-if="o.partner_id.eq_name3" t-field="o.partner_id.eq_name3" style="clear:left;"/>
 							</div>
 							<div>
 								<span t-field="o.partner_id.street" />
