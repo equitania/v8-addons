@@ -16,6 +16,12 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+
+#### 03.08.2017
+### Version 1.1.180
+#### FIX
+- Ticket #4662 Auf dem Lieferschein werden nun unter weiteren Adress-Möglichkeiten auch die eq_name2 und eq_name3 angezeigt 
+
 #### 27.07.2017
 ### Version 1.1.179
 #### FIX
