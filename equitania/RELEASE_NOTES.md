@@ -16,6 +16,10 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 08.08.2017
+### Version 1.1.181
+#### FIX
+- Reportstyles werden nun angehängt anstatt ersetzt
 
 #### 03.08.2017
 ### Version 1.1.180

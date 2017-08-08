@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
 <data>
-<template id="report.style">
+<template id="eq_report_style" inherit_id="report.style">
+      <xpath expr=".">
+        <t>
      
     body {
         color: #000 !important;
@@ -107,6 +109,8 @@
 	ul, ol {
 		margin-left:0.6cm;
 	}
+		</t>
+	  </xpath>
 </template>
 </data>
 </openerp>
