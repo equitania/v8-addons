@@ -16,6 +16,12 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 25.08.2017
+### Version 1.1.182
+#### FIX
+- Ticket #4562: Menüeintrag "Berichtswesen" und "Personal" werden jetzt korrekt ausgeblendet, sobald die entsprechenden Flags in den Benutzereinstellungen gesetzt sind.
+
+
 #### 08.08.2017
 ### Version 1.1.181
 #### FIX
