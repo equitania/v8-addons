@@ -1,9 +1,8 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013-2015 Therp BV (<http://therp.nl>)
-#    All Rights Reserved
+#    Copyright (c) 2013-Present Acespritech Solutions Pvt. Ltd. (<http://acespritech.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -21,23 +20,22 @@
 ##############################################################################
 
 {
-    'name': 'TinyMCE widget',
-    'version': '0.4.5.4',
+    'name': 'Tinymce widget',
     'author': "Equitania Software GmbH",
+    'version': '1.0.0',
     'website': 'https://www.myodoo.de',
-    'summary': 'Provides a widget for editing HTML fields using TinyMCE 4.x',
+    'summary': 'Provides a widget for editing HTML fields using tinymce',
     "category": "Tools",
-    'license': 'AGPL-3',
     "depends": [
         'web',
     ],
     'data': [
-        'views/qweb.xml',
+        'views/template.xml',
     ],
     'css': [
-        'static/src/css/web_tinymce.css',
+        # 'static/src/css/web_tinymce.css',
     ],
-    'installable': False,
+    'installable': True,
     'auto_install': False,
-    'certificate': '',
 }
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

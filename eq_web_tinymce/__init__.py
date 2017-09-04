@@ -2,8 +2,7 @@
 ##############################################################################
 #
 #    OpenERP, Open Source Management Solution
-#    This module copyright (C) 2013 Therp BV (<http://therp.nl>)
-#    All Rights Reserved
+#    Copyright (c) 2013-Present Acespritech Solutions Pvt. Ltd. (<http://acespritech.com>).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -19,4 +18,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-from . import models
+
+# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+

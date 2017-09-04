@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <template id="assets_backend" name="web_tinymce assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/tinymce.min.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/themes/modern/theme.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/advlist/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/autolink/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/link/plugin.js"/>
+
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/lists/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/colorpicker/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/charmap/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/print/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/fullpage/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/preview/plugin.js"/>
+
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/hr/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/compat3x/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/media/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/table/plugin.js"/>
+                
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/emoticons/plugin.js"/>
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/code/plugin.js"/>
+                
+                <script type="text/javascript" src="/web_tinymce/static/lib/tinymce/plugins/wordcount/plugin.js"/>
+                <link rel="stylesheet" href="/web_tinymce/static/lib/tinymce/skins/lightgray/content.min.css"/>
+                <link rel="stylesheet" href="/web_tinymce/static/lib/tinymce/skins/lightgray/skin.min.css"/>
+                <script type="text/javascript" src="/web_tinymce/static/src/js/web_tinymce.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>
