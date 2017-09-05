@@ -171,8 +171,14 @@
 				<xpath expr="//notebook/page[@name='sales_purchases']"
 					position="after">
 					<page name='internal_notes' string="Internal Notes">
-						<field name="comment" placeholder="Put an internal note..."
-							widget="text_ckeditor4" />
+
+						<!-- original mit ckeditor -->
+						<!--
+							<field name="comment" placeholder="Put an internal note..." widget="text_ckeditor4" />
+						-->
+
+						<!-- neue VErsion mit unserem WebdEditor -> WebTinyEditor -->
+						<field name="comment" placeholder="Put an internal note..." widget="eq_web_tinymce" />
 					</page>
 				</xpath>
 
