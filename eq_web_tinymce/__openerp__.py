@@ -20,11 +20,11 @@
 ##############################################################################
 
 {
-    'name': 'Tinymce widget',
+    'name': 'Equitania Tiny Editor',
     'author': "Equitania Software GmbH",
-    'version': '1.0.0',
+    'version': '1.0.1',
     'website': 'https://www.myodoo.de',
-    'summary': 'Provides a widget for editing HTML fields using tinymce',
+    'summary': 'Ein Editor für HTML Felder',
     "category": "Tools",
     "depends": [
         'web',

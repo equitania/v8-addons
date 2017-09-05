@@ -1,13 +1,13 @@
-openerp.web_tinymce = function(instance)
+openerp.eq_web_tinymce = function(instance)
 {
     instance.web.form.widgets.add('text_html',
-            'instance.web_tinymce.FieldTinyMceEditor');
+            'instance.eq_web_tinymce.FieldTinyMceEditor');
     instance.web.form.widgets.add('html',
-            'instance.web_tinymce.FieldTinyMceEditor');
-    instance.web.form.widgets.add('ourNewEditor',
-            'instance.web_tinymce.FieldTinyMceEditor');
+            'instance.eq_web_tinymce.FieldTinyMceEditor');
+    instance.web.form.widgets.add('eq_web_tinymce',
+            'instance.eq_web_tinymce.FieldTinyMceEditor');
 
-    instance.web_tinymce.FieldTinyMceEditor = instance.web.form.FieldText.extend({
+    instance.eq_web_tinymce.FieldTinyMceEditor = instance.web.form.FieldText.extend({
 	    init: function() {
 	        this._super.apply(this, arguments);
 	    },
@@ -68,7 +68,7 @@ openerp.web_tinymce = function(instance)
 	        }
 	    },
     });
-    instance.web_tinymce.FieldTinyMceEditorRaw = instance.web_tinymce.FieldTinyMceEditor.extend({
+    instance.eq_web_tinymce.FieldTinyMceEditorRaw = instance.eq_web_tinymce.FieldTinyMceEditor.extend({
         filter_html: function(value){
             return value;
         }
