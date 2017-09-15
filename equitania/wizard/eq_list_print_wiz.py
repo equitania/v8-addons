@@ -50,7 +50,8 @@ class eq_list_print_wiz(models.Model):
 
 
 
-        search_result = self.env['eq_buffer_order_line_list'].search([])[0]
+        #search_result = self.env['eq_buffer_order_line_list'].search([])[0]
+        search_result = selected_ids[0]
 
         return self.env['report'].get_action(search_result,'equitania.report_open_sale_order_line')
 

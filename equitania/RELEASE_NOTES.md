@@ -16,6 +16,13 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 15.09.2017
+### Version 1.1.183
+#### FIX
+- Ticket 4625: Auftragspositionsliste (eq_ibf Modul) generiert jetzt eine einzigartige ID, zusammengesetzt aus Pos, Produkt ID und Auftrags ID. Reportfunktion im Equitania Paket angepasst.
+Problem war das wenn mehrere Personen die Liste drucken wollten, sich aber während der generierten Ansicht und dem Netätigen des Druck-Buttons der Datensatz in der Datenbank
+geändert hat, so ging die bisherige Funktion nach der rowNumber, sodass plötzlich ein anderer Datensatz in der Liste abgedruckt wurde.
+
 #### 05.09.2017
 ### Version 1.1.183
 #### CHG
