@@ -2242,7 +2242,7 @@ msgstr "Die interne Beschreibung wird in den Auftragspositionen anstatt der Verk
 #: code:addons/equitania/stock.py:205
 #, python-format
 msgid "The source location must be the same for all the moves of the picking."
-msgstr "Der Ausgangsort muss für alle Bewegungen der Kosmissionierung gleich sein."
+msgstr "Der Ausgangsort muss fuer alle Bewegungen der Kosmissionierung gleich sein."
 
 #. module: equitania
 #: model:res.groups,comment:equitania.purchase_in_products
