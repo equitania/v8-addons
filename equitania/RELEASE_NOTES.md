@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 26.09.2017
+### Version 1.1.185
+#### FIX
+- Ticket 4860: Lieferanschrift auf der Rechnung: Wenn der Kunde im Webshop eine separate Lieferadresse eingetragen hat, wurde der eq_name2 für NICHT-Firmen-Kontakte ignoriert. Dies wurde behoben.
+
 #### 15.09.2017
 ### Version 1.1.184
 #### FIX
