@@ -1,5 +1,10 @@
 ## Modul eq_web_tinymce
 
+### 17.10.2017
+#### Version 1.0.2
+##### CHG
+- Link zum Wikiartikel in Beschreibung ergänzt
+
 ### 05.09.2017
 #### Version 1.0.1
 ##### ADD, CHG

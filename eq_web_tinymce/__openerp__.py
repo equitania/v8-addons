@@ -22,7 +22,7 @@
 {
     'name': 'Equitania Tiny Editor',
     'author': "Equitania Software GmbH",
-    'version': '1.0.1',
+    'version': '1.0.2',
     'website': 'https://www.myodoo.de',
     'summary': 'Ein Editor für HTML Felder',
     "category": "Tools",
