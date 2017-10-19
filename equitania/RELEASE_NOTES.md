@@ -16,6 +16,12 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 19.10.2017
+### Version 1.1.187
+#### CHG
+- Jira-Issue SOW-31: Rechtegruppen für den neuen Benutzer 'Menu Personal anzeigen', 'Reiter Beschaffung im Produkt anzeigen', 'Menu Berichtswesen anzeigen' und 'Bereich Lieferanten in Finanzen anzeigen'
+werden jetzt nicht mehr per Default bei der Benutzer Anlage gesetzt.
+
 #### 26.09.2017
 ### Version 1.1.186
 #### FIX
