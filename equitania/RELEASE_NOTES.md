@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 07.11.2017
+### Version 1.1.188
+#### CHG
+- Lieferschein: Reihenfolge der Positionen im Report verbessert. Die Anordnung der Positionen und Sortierung wurde verbessert.
+
 #### 19.10.2017
 ### Version 1.1.187
 #### CHG
