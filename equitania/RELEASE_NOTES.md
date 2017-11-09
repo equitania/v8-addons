@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 09.11.2017
+### Version 1.1.189
+#### FIX
+- Ticket 4929: Bugfix für die Sortierung der Kategorien in den Angeboten und Aufträgen
+
 #### 07.11.2017
 ### Version 1.1.188
 #### CHG

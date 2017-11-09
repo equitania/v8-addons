@@ -25,15 +25,34 @@ from itertools import groupby
 
 def grouplines(self, ordered_lines, sortkey):
     """Return lines from a specified invoice or sale order grouped by category"""
-    grouped_lines = []
-    for key, valuesiter in groupby(ordered_lines, sortkey):
-        group = {}
-        group['category'] = key
-        group['lines'] = list(v for v in valuesiter)
+    # grouped_lines = []
+    # for key, valuesiter in groupby(ordered_lines, sortkey):
+    #     group = {}
+    #     group['category'] = key
+    #     group['lines'] = list(v for v in valuesiter)
+    #
+    #     if 'subtotal' in key and key.subtotal is True:
+    #         group['subtotal'] = sum(line.price_subtotal for line in group['lines'])
+    #     grouped_lines.append(group)
+    #
+    # return grouped_lines
 
-        if 'subtotal' in key and key.subtotal is True:
-            group['subtotal'] = sum(line.price_subtotal for line in group['lines'])
-        grouped_lines.append(group)
+    grouped_lines = []
+    group_ids = []
+    for line in ordered_lines:
+        if (line.sale_layout_cat_id.id in group_ids):
+            for group_line in grouped_lines:
+                if group_line['category'] == line.sale_layout_cat_id:
+                    group_line['subtotal'] += line.price_subtotal
+                    group_line['lines'].append(line)
+        else:
+            group = {}
+            group['category'] = line.sale_layout_cat_id
+            group['subtotal'] = line.price_subtotal
+            group['lines'] = []
+            group['lines'].append(line)
+            grouped_lines.append(group)
+            group_ids.append(line.sale_layout_cat_id.id)
 
     return grouped_lines
 
@@ -69,8 +88,9 @@ class AccountInvoice(osv.Model):
             -'invoice_id' (int): specify the concerned invoice.
         """
         ordered_lines = self.browse(cr, uid, invoice_id, context=context).invoice_line
+
         # We chose to group first by category model and, if not present, by invoice name
-        sortkey = lambda x: x.sale_layout_cat_id if x.sale_layout_cat_id else ''
+        sortkey = lambda x: x.sale_layout_cat_id.id if x.sale_layout_cat_id.id else ''
 
         return grouplines(self, ordered_lines, sortkey)
 
@@ -101,6 +121,9 @@ class SaleOrder(osv.Model):
             -'order_id' (int): specify the concerned sale order.
         """
         ordered_lines = self.browse(cr, uid, order_id, context=context).order_line
+
+        ordered_lines = sorted(ordered_lines, key=lambda x: x.sequence, reverse=False)
+
         sortkey = lambda x: x.sale_layout_cat_id if x.sale_layout_cat_id else ''
 
         return grouplines(self, ordered_lines, sortkey)
