@@ -1,5 +1,10 @@
 ## Modul eq_stock_account_compatibility
 
+#### 30.11.2016
+#### Version 1.0.4
+##### CHG
+- SQl Statement aus dem Standard übernommen (Ticket 5048). Anpassung Anzeige nur von aktivierten Lager.
+
 #### 15.12.2016
 #### Version 1.0.3
 ##### CHG
