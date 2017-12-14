@@ -18,7 +18,7 @@ Vorgehensweise unter Debian:
 
 #### 14.12.2017
 ### Version 1.1.190
-#### FIX
+#### ADD
 - Zusätzliche Abfrage bei der Durchführung einer Bestandsbuchung.
 
 #### 09.11.2017
