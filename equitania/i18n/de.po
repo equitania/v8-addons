@@ -2918,3 +2918,8 @@ msgstr "Herkunft"
 #: help:res.partner,source_id:0
 msgid "This is the source of the link Ex: Search Engine, another domain, or name of email list"
 msgstr "Hier können Sie die Herkunft neuer Interessenten vermerken: Suchmaschine, Webseite, E-Mail Liste, usw."
+
+#. module: equitania
+#: view:stock.inventory:equitania.eq_stock_inventory_view
+msgid "Are you sure you want to cancel this order?"
+msgstr "Sind Sie sicher, dass Sie die Bestandsbuchung durchführen wollen?"

@@ -5,6 +5,18 @@
 		<function model="eq_install_func" name="_load_translation" eval="[('equitania')]"/>
 
 
+        <record id="eq_stock_inventory_view" model="ir.ui.view">
+            <field name="name">eq.stock.inventory.form.view</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_form" />
+            <field name="arch" type="xml">
+	            <button name="action_done" position="replace">
+	            	<button name="action_done" states="confirm" string="Validate Inventory" type="object" class="oe_highlight" groups="stock.group_stock_manager" confirm="Are you sure you want to cancel this order?"/>
+	            </button>
+            </field>
+        </record>
+
+
 		<!-- Überschrieben, weil beim Standard das Balkendiagramm dargestellt wurde und dies zu lange zum Erstellen gebraucht hat.
 		Bei einer Datenbank mit über 4000 Einträgen hat es zu einem Absturz des Browsers und/oder Fehlermeldungen geführt.
 		Balkendiagramm wurde selbst nach einer Stunde nicht dargestellt.  -->

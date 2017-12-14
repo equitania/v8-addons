@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 14.12.2017
+### Version 1.1.190
+#### FIX
+- Zusätzliche Abfrage bei der Durchführung einer Bestandsbuchung.
+
 #### 09.11.2017
 ### Version 1.1.189
 #### FIX
