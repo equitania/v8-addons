@@ -295,7 +295,7 @@ class eq_report_sessionsummary(report_sxw.rml_parse):
         
         for pos in pos_session.order_ids:
             use_as_position_with_0 = False
-            if pos.partner_id.id is not False:
+            if pos.partner_id.id is not False and pos.partner_id.country_id.code != 'DE':
                 use_as_position_with_0 = True            
                 
             for line in pos.lines:            
@@ -307,7 +307,7 @@ class eq_report_sessionsummary(report_sxw.rml_parse):
                         elif line.product_id.taxes_id.eq_price_percentage == "7":           # check vat category - it's 7%
                             self.vat_7 += line.price_subtotal_incl#.price_unit
                     else:
-                        self.vat_0 += line.price_subtotal_incl#.price_unit                                       # it's 0%                
+                        self.vat_0 += line.price_subtotal_incl#.price_unit                                       # it's 0%
             
         #print "* vat_19: ", self.vat_19
         #print "* vat_7: ", self.vat_7

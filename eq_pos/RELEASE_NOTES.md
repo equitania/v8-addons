@@ -1,5 +1,10 @@
 ## Modul eq_pos
 
+#### 09.01.2017
+#### Version 1.0.39
+##### FIX
+- Ticket 5147: Wenn Partner zugeordnet, weitere Überprüfung ob dieser aus dem Inland stammt, wenn ja Mehrwertsteuerauswahl wie bisher... ansonsten 0% (Wenn nicht Inland)
+
 #### 23.02.2017
 #### Version 1.0.37
 ##### CHG
