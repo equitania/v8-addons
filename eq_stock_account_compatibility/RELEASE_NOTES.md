@@ -1,5 +1,10 @@
 ## Modul eq_stock_account_compatibility
 
+#### 06.02.2018
+#### Version 1.0.5
+##### CHG/FIX
+- Ticket 5247: Odoo Standard Bug => durch die in der Action definierte Domain war nur die Gruppierung sichtbar, jedoch nach dem kompletten Aufklappen, waren keine Einträge mehr zu sehen.
+
 #### 30.11.2016
 #### Version 1.0.4
 ##### CHG

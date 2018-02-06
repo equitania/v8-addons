@@ -21,7 +21,7 @@
 
 {
     'name': 'Equitania Stock Account Kompatibilitätsmodul',
-    'version': '1.0.4',
+    'version': '1.0.5',
     'description': """
         Equitania Software GmbH
     """,
@@ -30,6 +30,7 @@
     'depends': ['equitania', 'stock_account'],
     'category' : 'Compatibility',
     'data': [
+        'eq_stock_history_view.xml',
     ],
     'installable': True,
     'auto_install': True,
