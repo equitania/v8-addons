@@ -1,5 +1,9 @@
 ## eq_report_pattern 
 
+#### 06.04.2018
+#### Version 1.0.6
+##### FIX
+- copy sale.quote.line -> eq.sale.quote.line. Own model for eq.document.template
 
 #### 25.07.2017
 #### Version 1.0.5

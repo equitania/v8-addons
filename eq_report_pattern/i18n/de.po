@@ -122,3 +122,43 @@ msgstr "Positionen"
 msgid "Document Templates"
 msgstr "Dokumentenvorlagen"
 
+#. module: eq_report_pattern
+#: field:eq.sale.quote.line,price_unit:0
+msgid "Unit Price"
+msgstr "Preis/ME"
+
+#. module: eq_report_pattern
+#: field:eq.sale.quote.line,product_uom_id:0
+msgid "Unit of Measure "
+msgstr "Einheit"
+
+#. module: eq_report_pattern
+#: field:eq.sale.quote.line,quote_id:0
+msgid "Quotation Template Reference"
+msgstr "Template"
+
+#. module: eq_report_pattern
+#: field:eq.sale.quote.line,product_uom_qty:0
+msgid "Quantity"
+msgstr "Anzahl"
+
+#. module: eq_report_pattern
+#: field:eq.sale.quote.line,name:0
+msgid "Description"
+msgstr "Beschreibung"
+
+#. module: eq_report_pattern
+#: field:eq.sale.quote.line,product_id:0
+msgid "Product"
+msgstr "Produkt"
+
+#. module: eq_report_pattern
+#: field:eq.sale.quote.line,discount:0
+msgid "Discount (%)"
+msgstr "Rabatt (%)"
+
+#. module: eq_report_pattern
+#: field:eq.document.template,display_name:0
+#: field:eq.sale.quote.line,display_name:0
+msgid "Display Name"
+msgstr "Anzeigename"

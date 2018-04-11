@@ -19,9 +19,15 @@
 #
 ##############################################################################
 
-import document_template
-import sale
-import purchase
-import account_invoice
-import stock_picking
-import eq_sale_quote_line
+
+from openerp.osv import osv, fields
+
+
+class eq_sale_quote_line(osv.osv):
+    _name = "eq.sale.quote.line"
+    _inherit = "sale.quote.line"
+    _description = "Quotation Template Lines"
+    _columns = {
+        'quote_id': fields.many2one('eq.document.template', 'Quotation Template Reference', required=True,
+                                    ondelete='cascade', select=True),
+    }
