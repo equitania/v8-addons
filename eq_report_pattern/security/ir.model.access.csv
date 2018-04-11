@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_eq_document_template_user,eq_document_template_access,model_eq_document_template,base.group_sale_salesman,1,1,1,1
 eq_access_sale_quote_line,eq.report.pattern.sale.quote.line,website_quote.model_sale_quote_line,base.group_sale_salesman,1,1,1,1
+eq_access_eq_sale_quote_line,eq.report.pattern.eq.sale.quote.line,model_eq_sale_quote_line,base.group_sale_salesman,1,1,1,1
