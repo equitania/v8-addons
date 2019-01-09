@@ -46,6 +46,9 @@ class eq_account_invoice_line(models.Model):
         Berechnet den Rabattwert für eine Position
         :return:
         """
+
+        # NOTE: Deactivated on 09.01.2019 because of Ticket 5280
+        """
         # Ticket 4142: neue Berechnung für Rabatt: Preis * Menge - Betrag inkl. Rabatt
         for record in self:
             # Ticket 4142: neue Berechnung für Rabatt: Preis * Menge - Betrag inkl. Rabatt
@@ -54,6 +57,9 @@ class eq_account_invoice_line(models.Model):
             else:
                 # Falls Betrag noch nicht berchnet wurde, alte Logik nutzen
                 record.discount_value = record.discount / 100 * record.price_unit * record.quantity
+        """
+        for record in self:
+            record.discount_value = record.discount / 100 * record.price_unit * record.quantity
 
 
     @api.depends('discount', 'discount_value')
@@ -70,8 +76,8 @@ class eq_account_invoice_line(models.Model):
        
         for record in self:
             discounted_txt = rep_helper_obj.get_price(record.discount, self._context['lang'], 'Product Price', False)
+            record.discount_value = record.discount / 100 * record.price_unit * record.quantity  # changed on 08.01.2019
             discounted_value_txt = rep_helper_obj.get_price(record.discount_value, self._context['lang'], 'Product Price', False)
-            
             if currency_symbol:
                 discounted_value_txt += ' ' + currency_symbol
             

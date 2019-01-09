@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 09.01.2019
+### Version 1.1.191
+#### FIX
+- Fehler in der Ermittlung von den Rabatt behoben (Zendesk 5280)
+
 #### 14.12.2017
 ### Version 1.1.190
 #### ADD
