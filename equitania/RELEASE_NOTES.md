@@ -16,6 +16,11 @@ Vorgehensweise unter Debian:
 
 `fc-cache -f -v`
 
+#### 30.01.2019
+### Version 1.1.192
+#### CHG
+- Angebot- & Rechnungs-Report: Positionen mit einer negativen Menge werden nun auch angedruckt
+
 #### 09.01.2019
 ### Version 1.1.191
 #### FIX

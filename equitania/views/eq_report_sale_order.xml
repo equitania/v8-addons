@@ -344,7 +344,7 @@
 							<!-- Lines associated -->
 							<t t-foreach="p['lines']" t-as="line">
 								<!-- Normale Auftragszeile -->
-								<tr t-if="line.product_id.name and line.product_uom_qty > 0">
+								<tr t-if="line.product_id.name and line.product_uom_qty != 0">
 									<td>
 										<span t-field="line.sequence" />
 									</td>
