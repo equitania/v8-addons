@@ -6,9 +6,17 @@ openerp.eq_snom = function (instance) {
     instance.eq_snom.action = function (parent, action) {
         //console.log("Executed the action", action);
     	//console.log("url", action.url);
-    	
-    	// get url from paramater action and execute http get
+
+        // get url from paramater action and execute http get
+        /*
     	var i = document.createElement("img");
-		i.src = action.url;		
+		i.src = action.url;
+		*/
+
+        // execution of HTTP-GET more specificaly
+    	const http = new XMLHttpRequest();
+        http.open("GET", action.url);
+        http.send();
+        http.onload = () => console.log(http.responseText)
     };
 };

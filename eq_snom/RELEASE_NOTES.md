@@ -1,5 +1,10 @@
 ## eq_snom
 
+#### 09.05.2019
+#### Version 1.0.4
+##### CHG
+- changed the way how we execute HTTP-GET call of snom request
+
 #### 26.08.2015
 #### Version 1.0.3
 ##### Bugfix

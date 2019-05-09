@@ -61,7 +61,7 @@ class eq_snom_call(models.TransientModel):
         #Get current user    
         res_user_obj = self.env['res.users'].sudo()
         res_user = res_user_obj.search([('id', '=', self._uid)])
-        
+
         if (res_user.eq_snom_ip_name) and (phone_number):
             #Format the phone number            
             if (res_user.eq_snom_prefix):
@@ -77,7 +77,8 @@ class eq_snom_call(models.TransientModel):
                           
             #url_response = urllib2.urlopen(url).read()
             #print '------------------------------------- ', url
-            
+
+            #url = "https://api.lyrics.ovh/v1/toto/africa"  # only for tests
             # execute client call and hand our url paramater over. We'll use that url in our javascript !     
             return {
                 'type': 'ir.actions.client',
